@@ -4,8 +4,9 @@ define(function (require, exports, module) {
 
     var app = require("app");
     var Backbone = require("backbone");
-    var MilestoneListView = require('components/milestone/list/view');
-    var IssueListView = require('components/issue/list/view');
+
+    var MPListView = require('components/mp/list/view');
+    var MPView = require('components/mp/view/view');
 
     // Basic pages
     var HomePageView = require('components/page/home/view');
@@ -14,20 +15,21 @@ define(function (require, exports, module) {
         routes: {
             // Define URL routes
             '': 'home',
-            'milestones/:milestone_id/issues': 'issues',
+            'mp': 'mp_list',
+            'mp/:mp_id': 'mp_view',
             // Default
-            '*actions': 'milestones'
+            '*actions': 'home'
         },
         home: function () {
             var view = new HomePageView();
             view.render();
         },
-        milestones: function () {
-            var view = new MilestoneListView();
+        mp_list: function () {
+            var view = new MPListView();
             view.render();
         },
-        issues: function (milestone_id) {
-            var view = new IssueListView(milestone_id);
+        mp_view: function (mp_id) {
+            var view = new MPView(mp_id);
             view.render();
         }
 

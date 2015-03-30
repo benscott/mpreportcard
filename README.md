@@ -1,6 +1,3 @@
-# Data Portal Roadmap
-
-# Docs
 
 https://github.com/thomasdavis/backbonetutorials/tree/gh-pages/examples/modular-backbone
 http://addyosmani.github.io/backbone-fundamentals/#backbone-basics
