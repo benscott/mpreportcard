@@ -16,11 +16,15 @@ define(function (require, exports, module) {
             this.mps.fetch({reset: true});
             this.mps.bind('reset', this.show, this);
         },
+        render: function(){
+            // Make mp page item active
+            $('#navbar li').removeClass('active');
+            $('#navbar li a[href="#mp"]').parent().addClass('active');
+        },
         show: function () {
             var mp = this.mps.get(this.mp_id);
             var template = _.template(tpl);
             this.$el.html(template({mp: mp}));
-
         }
     });
 

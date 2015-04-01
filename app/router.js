@@ -5,11 +5,10 @@ define(function (require, exports, module) {
     var app = require("app");
     var Backbone = require("backbone");
 
+    // Set up views
     var MPListView = require('components/mp/list/view');
     var MPView = require('components/mp/view/view');
-
-    // Basic pages
-    var HomePageView = require('components/page/home/view');
+    var HomePageView = require('components/home/view');
 
     var Router = Backbone.Router.extend({
         routes: {

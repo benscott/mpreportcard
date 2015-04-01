@@ -55,19 +55,19 @@ define(function (require, exports, module) {
         initialize: function () {
             this.collection = new MPCollection();
             this.collection.fetch({reset: true});
-            this.collection.bind('reset', this.render, this);
             this.grid = new Backgrid.Grid({
               columns: columns,
               collection: this.collection
             });
         },
         render: function () {
+            // Make mp page item active
+            $('#navbar li').removeClass('active');
+            $('#navbar li a[href="#mp"]').parent().addClass('active');
             // Render the template
             var template = _.template(tpl);
             this.$el.html(template());
-            // And add the grid
             this.$('#grid').html(this.grid.render().el);
-
         }
     });
 
