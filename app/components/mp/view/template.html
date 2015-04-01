@@ -1,2 +1,14 @@
-<div id="filter">FILTER</div>
-<div id="grid">GRID 1</div>
+
+<% if (mp) { %>
+
+    <div class="header header-<%= mp.get('cls') %>">
+        <h1><%= mp.get("name") %></h1>
+        <h2><%= mp.get("party") %>, <%= mp.get("constituency") %></h2>
+    </div>
+
+<% } else { %>
+    <h4>Sorry, no MP found</h4>
+<% } %>
+
+
+

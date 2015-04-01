@@ -7,8 +7,7 @@ require.config({
     underscore: '/vendor/bower/underscore/underscore',
     text: '/vendor/bower/text/text',
     backgrid: '/vendor/bower/backgrid/lib/backgrid',
-    templates: 'templates',
-    bootstrap: "/vendor/bower/bootstrap/dist/js/bootstrap"
+    bootstrap: "/vendor/bower/bootstrap/dist/js/bootstrap",
   },
     shim: {
         'bootstrap': ['jquery']

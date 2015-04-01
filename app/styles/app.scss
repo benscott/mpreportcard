@@ -1,0 +1,22 @@
+$labour-color: #E00600;
+$cons-color: #0061C8;
+$lib-color: #FEB000;
+$ukip-color: #333;
+$sdlp-color: #0C5C40;
+
+.header{
+  color: #fff;
+  background: #666;
+}
+
+.header-labour{
+  background-color: $labour-color;
+}
+
+.header-conservative{
+  background-color: $cons-color;
+}
+
+.header-liberal-democrat{
+  background-color: $lib-color;
+}

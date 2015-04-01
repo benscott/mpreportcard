@@ -5,7 +5,7 @@ define(function (require, exports, module) {
     var tpl = require('text!./template.html');
     var Backgrid = require("backgrid");
     var Backbone = require("backbone");
-    var IssueCollection = require("../collection")
+    var MPCollection = require("../collection")
 
     var linkCell = Backgrid.UriCell.extend({
         render: function () {
@@ -14,10 +14,9 @@ define(function (require, exports, module) {
             var formattedValue = this.model.get(this.titleField)
             this.$el.append($("<a>", {
               tabIndex: -1,
-              href: rawValue,
-              title: this.title || formattedValue,
-              target: this.target
-            }).text(formattedValue));
+              href: '#mp/' + rawValue,
+              title: 'View' + formattedValue
+            }).text('View'));
             this.delegateEvents();
             return this;
           }
@@ -26,27 +25,37 @@ define(function (require, exports, module) {
     // Column definitions
     var columns = [
         {
-            name: "html_url",
-            label: "Issue",
-            cell: linkCell.extend({titleField:'title'}),
+            name: "id",
+            label: "Link",
+            cell: linkCell.extend({titleField:'name'}),
             editable: false
         },
         {
-            name: "created_at",
-            label: "Date created",
-            cell: "date",
+            name: "list_name",
+            label: "MP",
+            cell: "string",
+            editable: false
+        },
+        {
+            name: "constituency",
+            label: "Constituency",
+            cell: "string",
+            editable: false
+        },
+        {
+            name: "party",
+            label: "Party",
+            cell: "string",
             editable: false
         }
     ];
 
     var View = Backbone.View.extend({
         el: $("#main"),
-        initialize: function (milestone_id) {
-            this.collection = new IssueCollection({milestone_id: milestone_id});
-            // Fetch the milestones - this performs an API call
+        initialize: function () {
+            this.collection = new MPCollection();
             this.collection.fetch({reset: true});
             this.collection.bind('reset', this.render, this);
-
             this.grid = new Backgrid.Grid({
               columns: columns,
               collection: this.collection

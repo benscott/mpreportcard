@@ -10,7 +10,4 @@ define(function(require, exports, module) {
   // The root path to run the application through.
   app.root = "/";
 
-  // API endpoint.
-  app.api = "https://api.github.com/repos/NaturalHistoryMuseum/data-portal-roadmap.io/";
-
 });
