@@ -10,6 +10,7 @@ App.module('MPList', function (MPList) {
             $('#navbar li a[href="#mp"]').parent().addClass('active');
             // Add table sort
             this.$('table').stupidtable();
+            this.$('table').find("th.mp-name").click();
         }
     });
 });
