@@ -16,4 +16,3 @@ To run:
 
 jekyll serve
 python bin/serve.py
-
