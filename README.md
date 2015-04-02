@@ -15,4 +15,3 @@ FIXME: backgrid bower installation downgrades jquery
 To run:
 
 jekyll serve
-python bin/serve.py

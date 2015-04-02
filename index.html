@@ -1,21 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
-    <title>MP Report Card 2015</title>
-
-    <link rel="stylesheet" href="/app/styles/index.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>MP</title>
+    <link rel="stylesheet" href="/styles/index.css">
 
 </head>
-
 <body>
+<div class="container">
 
-<nav class="navbar navbar-inverse">
-    <div class="container">
+    <header class="navbar navbar-inverse">
 
         <div class="row">
 
@@ -29,7 +24,7 @@
             <div class="col-sm-4">
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Home</a></li>
                         <li><a href="#mp">MPs</a></li>
                         <li><a href="#stats">Stats</a></li>
                         <li><a href="#about">About</a></li>
@@ -38,31 +33,108 @@
 
             </div>
 
-            <div class="col-sm-4">
-
-                <div id="search" class="big-search pull-right">SEARCH</div>
+            <div class="col-sm-4" data-region="search">
 
             </div>
 
         </div>
 
+    </header>
 
-        <!--/.nav-collapse -->
-    </div>
-</nav>
+    <section id="appBody" data-region="body" class="row"></section>
 
-<div class="container">
-
-    <!-- Application container. -->
-    <main role="main" id="main"></main>
-
+    <footer data-region="footer" class="row">
+        <p class="col-xs-12 text-muted">Copyright &copy; 2013
+            Joe Zimmerman. This is an example application used in
+            the book, <em>Better Backbone Applications with
+                MarionetteJS</em>.</p>
+    </footer>
 </div>
-<!-- /.container -->
 
-<!-- build:[src] -->
-<script data-main="/app/main" src="/vendor/bower/requirejs/require.js"></script>
-<!-- /build -->
+<!-- Templates -->
 
+    <script type="text/template" id="index-page">
+        <h1>What has your MP been doing?</h1>
+        <div id="home-search">SEARCH</div>
+    </script>
+
+    <script type="text/template" id="mp">
+        <div class="header header-<%= clsName %>">
+            <h1><%= name %></h1>
+            <h2><%= party %>, <%= constituency %></h2>
+        </div>
+    </script>
+
+    <script type="text/template" id="mp-404">
+        <h1>Sorry, we could not find this MP</h1>
+    </script>
+
+    <script type="text/template" id="mplist-table">
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">&nbsp;</th>
+                        <th class="col-xs-3" data-sort="string">Name</th>
+                        <th class="col-xs-3" data-sort="string">Party</th>
+                    </tr>
+                </thead>
+                <tbody data-item-view-container></tbody>
+            </table>
+        </div>
+    </script>
+
+    <script type="text/template" id="mplist-row">
+        <td><a href="#mp/<%= id %>">View</a></td>
+        <td class="lead"><%= list_name %></td>
+        <td><%= party %></td>
+    </script>
+
+    <script type="text/template" id="mplist-empty">
+        Sorry, no MPs found
+    </script>
+
+    <!-- Dependencies -->
+    <!-- FIXME: Use MIN -->
+    <script src="vendor/bower/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/bower/underscore/underscore.js"></script>
+    <script src="vendor/bower/backbone/backbone.js"></script>
+    <script src="vendor/bower/marionette/lib/backbone.marionette.min.js"></script>
+    <script src="vendor/bower/devbridge-autocomplete/src/jquery.autocomplete.js"></script>
+    <script src="vendor/stupidtable.min.js"></script>
+
+    <!-- App and Helpers -->
+    <script src="js/App.js"></script>
+    <script src="js/helpers/SubAppManager.js"></script>
+    <script src="js/Router.js"></script>
+
+    <!-- Data -->
+    <script src="js/modules/Data/models/MP.js"></script>
+    <script src="js/modules/Data/models/MPs.js"></script>
+    <script src="js/modules/Data/index.js"></script>
+
+    <!-- Modules -->
+    <script src="js/modules/MPList/views/RowView.js"></script>
+    <script src="js/modules/MPList/views/EmptyView.js"></script>
+    <script src="js/modules/MPList/views/TableView.js"></script>
+    <script src="js/modules/MPList/Controller.js"></script>
+    <script src="js/modules/MPList/Router.js"></script>
+    <script src="js/modules/MPList/index.js"></script>
+
+    <script src="js/modules/Page/views/IndexView.js"></script>
+    <script src="js/modules/Page/Controller.js"></script>
+    <script src="js/modules/Page/Router.js"></script>
+    <script src="js/modules/Page/index.js"></script>
+
+    <script src="js/modules/MP/views/MPView.js"></script>
+    <script src="js/modules/MP/Controller.js"></script>
+    <script src="js/modules/MP/Router.js"></script>
+    <script src="js/modules/MP/index.js"></script>
+
+<script src="js/modules/Search/views/SearchView.js"></script>
+
+    <!-- Init -->
+    <script src="js/initialize.js"></script>
 
 </body>
 </html>
