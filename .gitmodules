@@ -1,0 +1,3 @@
+[submodule "bin/mp_data"]
+	path = bin/mp_data
+	url = git@github.com:benscott/mpreportcard.data.git
