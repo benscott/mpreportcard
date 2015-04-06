@@ -181,24 +181,9 @@ footer {
   .mp .header-liberal-democrat {
     background-color: #FEB000; }
 
-.chart rect:first-of-type {
-  color: #fff;
-  stroke: #3994b6;
-  fill: white; }
-
-text:first-of-type {
-  fill: #3994b6;
-  font-family: sans-serif;
-  font-size: 12px; }
-
-.chart rect:nth-of-type(2) {
-  color: #fff;
-  stroke: transparent;
-  fill: #3994b6; }
-
-text:nth-of-type(2) {
-  fill: #a8d4e4;
-  font-family: sans-serif;
-  font-size: 12px; }
+.mp .box {
+  background: #F6F6F6; }
+  .mp .box .bar-chart {
+    background: #fff; }
 
 /*# sourceMappingURL=app.css.map */

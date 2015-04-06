@@ -7,8 +7,10 @@ App.module('MP', function (MP) {
             interests: "#mp-interests"
         },
         onShow: function () {
-            console.log(this.interests);
-            this.interests.show(new App.MP.BarChartView())
+            this.interests.show(new App.MP.BarChartView({
+                'average': 68668,
+                'value': this.model.get('financial_interests')
+            }))
         },
         getTemplate: function () {
             if (this.model) {
