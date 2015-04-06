@@ -3,138 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>MP</title>
+    <title>MP Report Card 2015</title>
     <link rel="stylesheet" href="/styles/index.css">
 
 </head>
 <body>
-<div class="container">
 
-    <header class="navbar navbar-inverse">
-
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
         <div class="row">
-
-            <div class="col-sm-4">
+            <div class="col-xs-12 col-sm-8">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="#"><span>MP</span> Report Card</a>
                 </div>
-
-            </div>
-
-            <div class="col-sm-4">
-                <div id="navbar" class="collapse navbar-collapse">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Home</a></li>
                         <li><a href="#mp">MPs</a></li>
                         <li><a href="#stats">Stats</a></li>
                         <li><a href="#about">About</a></li>
                     </ul>
                 </div>
-
+                <!-- /.navbar-collapse -->
             </div>
-
-            <div class="col-sm-4" data-region="search">
-
-            </div>
+            <!-- On >medium this takes up 4 cols, but is hidden for small -->
+            <div class="col-sm-4 hidden-xs pull-right" data-region="search"></div>
 
         </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</nav>
 
-    </header>
 
-    <section id="appBody" data-region="body" class="row"></section>
+<section id="appBody" data-region="body"></section>
 
-    <footer data-region="footer" class="row">
-        <p class="col-xs-12 text-muted">Copyright &copy; 2013
-            Joe Zimmerman. This is an example application used in
-            the book, <em>Better Backbone Applications with
-                MarionetteJS</em>.</p>
-    </footer>
-</div>
+<footer data-region="footer">
+    <div class="container">
+        <p class="col-xs-12 text-muted">FOOTER</p>
+    </div>
+</footer>
 
 <!-- Templates -->
 
-    <script type="text/template" id="index-page">
-        <h1>What has your MP been doing?</h1>
-        <div id="home-search">SEARCH</div>
-    </script>
+<script type="text/template" id="index-page">
 
-    <script type="text/template" id="mp">
-        <div class="header header-<%= clsName %>">
-            <h1><%= name %></h1>
-            <h2><%= party %>, <%= constituency %></h2>
+    <div class="full">
+        <div class="container">
+            <h1 class="text-center">How have your MPs been doing?</h1>
+
+            <div id="home-search"></div>
         </div>
-    </script>
+    </div>
 
-    <script type="text/template" id="mp-404">
-        <h1>Sorry, we could not find this MP</h1>
-    </script>
+    <div class="container content">
+        <div class="row">
+            <h2 class="text-center">During the 2010-2015 parliament our MPs:</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 blocks">
+                <img width="75" height="90" src="/img/portcullis.gif" alt="Crowned portcullis">
 
-    <script type="text/template" id="mplist-table">
-        <div class="col-xs-12">
-            <table class="table table-striped">
-                <thead>
+                <h3>Earned an extra &pound;36 Million</h3>
+
+                <p class="text-muted">Our MPs declared financial interests of £36 million.</p>
+            </div>
+            <div class="col-sm-4 blocks">
+                <img width="75" height="90" src="/img/portcullis.gif" alt="Crowned portcullis">
+
+                <h3>Earned an extra &pound;36 Million</h3>
+
+                <p class="text-muted">Our MPs declared financial interests of £36 million.</p>
+            </div>
+            <div class="col-sm-4 blocks">
+                <img width="75" height="90" src="/img/portcullis.gif" alt="Crowned portcullis">
+
+                <h3>Earned an extra &pound;36 Million</h3>
+
+                <p class="text-muted">Divisions, speeches, early day motions and Q&amp;As.</p>
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="mp">
+    <div class="header header-<%= clsName %>">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="image"><img class="img-responsive" src="/src/images/<%= id %>.jpg" alt="<%= name %>"></div>
+                    <h1><%= name %></h1>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <h4><strong><%= party %></strong><%= constituency %></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 text-center">
+                <h2>Interests</h2>
+
+                <h3>&pound<%= financial_interests.toLocaleString() %></h3>
+
+                <div class="donut"></div>
+
+
+
+                <div id="mp-interests">HELLO</div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="mp-404">
+    <h1>Sorry, we could not find this MP</h1>
+</script>
+
+<script type="text/template" id="mplist-table">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <th class="col-xs-1">&nbsp;</th>
                         <th class="col-xs-3 mp-name" data-sort="string">Name</th>
-                        <th class="col-xs-3" data-sort="string">Party</th>
+                        <th class="col-xs-3" data-sort="string">Constituency</th>
+                        <th class="col-xs-1" data-sort="float">Interests</th>
+                        <th class="col-xs-1" data-sort="float">Expenses</th>
+                        <th class="col-xs-1" data-sort="float">Votes</th>
+                        <th class="col-xs-1" data-sort="int">Debates</th>
+                        <th class="col-xs-1" data-sort="int">Answers</th>
                     </tr>
-                </thead>
-                <tbody data-item-view-container></tbody>
-            </table>
+                    </thead>
+                    <tbody data-item-view-container></tbody>
+                </table>
+            </div>
         </div>
-    </script>
+    </div>
+</script>
 
-    <script type="text/template" id="mplist-row">
-        <td><a href="#mp/<%= id %>">View</a></td>
-        <td class="lead"><%= list_name %></td>
-        <td><%= party %></td>
-    </script>
+<script type="text/template" id="mplist-row">
+    <td class="lead <%= clsName %>" data-sort-value="<%= list_name %>"><i title="<%= party %>" class="fa fa-circle"></i><a href="#mp/<%= id %>"><%= list_name %></a></td>
+    <td data-sort-value="<%= constituency %>"><%= constituency %>,<br/><%= party %></td>
+    <td data-sort-value="<%= financial_interests %>">&pound;<%= financial_interests.toLocaleString() %></td>
+    <td data-sort-value="<%= expenses %>">&pound;<%= expenses.toLocaleString() %></td>
+    <td data-sort-value="<%= votes_percentage %>"><%= votes_percentage %>&percnt;</td>
+    <td><%= debates %></td>
+    <td><%= answers %></td>
+</script>
 
-    <script type="text/template" id="mplist-empty">
-        Sorry, no MPs found
-    </script>
+<script type="text/template" id="mplist-empty">
+    Sorry, no MPs found
+</script>
 
-    <!-- Dependencies -->
-    <!-- FIXME: Use MIN -->
-    <script src="vendor/bower/jquery/dist/jquery.min.js"></script>
-    <script src="vendor/bower/underscore/underscore.js"></script>
-    <script src="vendor/bower/backbone/backbone.js"></script>
-    <script src="vendor/bower/marionette/lib/backbone.marionette.min.js"></script>
-    <script src="vendor/bower/devbridge-autocomplete/src/jquery.autocomplete.js"></script>
-    <script src="vendor/stupidtable.min.js"></script>
+<!-- Dependencies -->
+<!-- FIXME: Use MIN -->
+<script src="vendor/bower/jquery/dist/jquery.min.js"></script>
+<script src="vendor/bower/underscore/underscore.js"></script>
+<script src="vendor/bower/backbone/backbone.js"></script>
+<script src="vendor/bower/marionette/lib/backbone.marionette.min.js"></script>
+<script src="vendor/bower/devbridge-autocomplete/src/jquery.autocomplete.js"></script>
+<script src="vendor/stupidtable.min.js"></script>
+<script src="vendor/bower/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="vendor/bower/d3/d3.min.js"></script>
 
-    <!-- App and Helpers -->
-    <script src="js/App.js"></script>
-    <script src="js/helpers/SubAppManager.js"></script>
-    <script src="js/Router.js"></script>
+<!-- App and Helpers -->
+<script src="js/App.js"></script>
+<script src="js/helpers/SubAppManager.js"></script>
+<script src="js/Router.js"></script>
 
-    <!-- Data -->
-    <script src="js/modules/Data/models/MP.js"></script>
-    <script src="js/modules/Data/models/MPs.js"></script>
-    <script src="js/modules/Data/index.js"></script>
+<!-- Data -->
+<script src="js/modules/Data/models/MP.js"></script>
+<script src="js/modules/Data/models/MPs.js"></script>
+<script src="js/modules/Data/index.js"></script>
 
-    <!-- Modules -->
-    <script src="js/modules/MPList/views/RowView.js"></script>
-    <script src="js/modules/MPList/views/EmptyView.js"></script>
-    <script src="js/modules/MPList/views/TableView.js"></script>
-    <script src="js/modules/MPList/Controller.js"></script>
-    <script src="js/modules/MPList/Router.js"></script>
-    <script src="js/modules/MPList/index.js"></script>
+<!-- Modules -->
+<script src="js/modules/MPList/views/RowView.js"></script>
+<script src="js/modules/MPList/views/EmptyView.js"></script>
+<script src="js/modules/MPList/views/TableView.js"></script>
+<script src="js/modules/MPList/Controller.js"></script>
+<script src="js/modules/MPList/Router.js"></script>
+<script src="js/modules/MPList/index.js"></script>
 
-    <script src="js/modules/Page/views/IndexView.js"></script>
-    <script src="js/modules/Page/Controller.js"></script>
-    <script src="js/modules/Page/Router.js"></script>
-    <script src="js/modules/Page/index.js"></script>
+<script src="js/modules/Page/views/IndexView.js"></script>
+<script src="js/modules/Page/Controller.js"></script>
+<script src="js/modules/Page/Router.js"></script>
+<script src="js/modules/Page/index.js"></script>
 
-    <script src="js/modules/MP/views/MPView.js"></script>
-    <script src="js/modules/MP/Controller.js"></script>
-    <script src="js/modules/MP/Router.js"></script>
-    <script src="js/modules/MP/index.js"></script>
+<script src="js/modules/MP/views/MPView.js"></script>
+<script src="js/modules/MP/views/BarChartView.js"></script>
+<script src="js/modules/MP/Controller.js"></script>
+<script src="js/modules/MP/Router.js"></script>
+<script src="js/modules/MP/index.js"></script>
 
 <script src="js/modules/Search/views/SearchView.js"></script>
 
-    <!-- Init -->
-    <script src="js/initialize.js"></script>
+<!-- Init -->
+<script src="js/initialize.js"></script>
 
 </body>
 </html>

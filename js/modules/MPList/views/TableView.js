@@ -1,5 +1,6 @@
 App.module('MPList', function (MPList) {
     MPList.TableView = Marionette.CompositeView.extend({
+        className: 'mp-list',
         template: '#mplist-table',
         itemView: MPList.RowView,
         itemViewContainer: '[data-item-view-container]',

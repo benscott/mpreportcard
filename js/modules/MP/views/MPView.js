@@ -1,7 +1,15 @@
 App.module('MP', function (MP) {
-    MP.MPView = Marionette.ItemView.extend({
+    MP.MPView = Marionette.Layout.extend({
+        className: 'mp',
         template: '#mp',
         emptyTemplate: '#mp-404',
+        regions: {
+            interests: "#mp-interests"
+        },
+        onShow: function () {
+            console.log(this.interests);
+            this.interests.show(new App.MP.BarChartView())
+        },
         getTemplate: function () {
             if (this.model) {
                 return this.template;
@@ -15,5 +23,5 @@ App.module('MP', function (MP) {
             $('#navbar li').removeClass('active');
             $('#navbar li a[href="#mp"]').parent().addClass('active');
         }
-    });
+     });
 });

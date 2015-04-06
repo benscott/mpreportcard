@@ -9,9 +9,6 @@ App.module('MP', function (MP) {
         showMP: function (id) {
             this._ensureSubAppIsRunning();
             this.data = App.module('Data').mps.get(id);
-
-            console.log(this.data);
-
             this.view = new MP.MPView({model: this.data});
             // Show in the body
             App.body.show(this.view);

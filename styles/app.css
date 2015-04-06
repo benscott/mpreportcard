@@ -1,14 +1,204 @@
-.header {
+html, body {
+  width: 100%;
+  height: 100%; }
+
+h1, h2, h3 {
+  text-transform: uppercase; }
+
+#appBody {
+  color: #1E222C;
+  min-height: 200px; }
+
+.text-muted {
+  color: #7A7F51; }
+
+.navbar {
+  border-radius: 0 !important;
+  background-color: #1E222C;
+  margin-bottom: 0;
+  border-bottom: 0; }
+  .navbar .navbar-brand {
+    font-size: 22px; }
+    .navbar .navbar-brand span {
+      color: #fff;
+      font-weight: bold; }
+  .navbar .navbar-collapse {
+    text-align: center; }
+  .navbar ul.navbar-nav {
+    margin: 0 auto !important;
+    display: inline-block;
+    float: none; }
+  .navbar #search-form input {
+    margin-top: 10px;
+    background: #000;
+    border: none; }
+
+footer {
+  background-color: #1E222C;
+  margin-top: 50px; }
+
+#search-form {
+  position: relative; }
+  #search-form span.glyphicon-search {
+    color: #fff;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -0.5em; }
+  #search-form input {
+    border-radius: 0;
+    box-shadow: none;
+    color: #fff; }
+
+.autocomplete-suggestions {
+  color: #fff; }
+
+.autocomplete-suggestion {
+  padding: 3px 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+  -webkit-background-clip: padding-box;
+  /* for Safari */
+  background-clip: padding-box;
+  /* for IE9+, Firefox 4+, Opera, Chrome */ }
+
+.autocomplete-selected {
+  background: #fff;
+  color: #1E222C; }
+
+#appBody, div.home {
+  display: inline; }
+
+.home .full {
+  background: url("/img/commons-full.jpg") no-repeat center center fixed;
+  height: 100%;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow: hidden; }
+  .home .full .container {
+    text-align: center; }
+  .home .full h1 {
+    margin-top: 160px;
+    color: #fff;
+    font-size: 50px;
+    text-align: center; }
+  .home .full #search-form input {
+    border: 1px solid #fff;
+    background: none;
+    font-size: 2em;
+    line-height: 60px;
+    height: 60px; }
+  .home .full #search-form span.glyphicon-search {
+    font-size: 30px; }
+  .home .full #home-search {
+    width: 60%;
+    margin: 80px auto 0 auto; }
+  .home .full .help {
+    color: #fff;
+    margin: 20px 0;
+    font-size: 18px !important; }
+.home h2 {
+  margin: 50px 0 30px 0; }
+.home .blocks {
+  margin: 20px 0;
+  text-align: center; }
+  .home .blocks h3 {
+    margin: 20px 0 5px 0;
+    font-size: 18px; }
+  .home .blocks img {
+    display: block;
+    margin: 10px auto; }
+
+.mp-list {
+  margin-top: 80px; }
+  .mp-list table th {
+    border-bottom: none !important;
+    cursor: pointer; }
+    .mp-list table th:before {
+      cursor: pointer;
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: inherit;
+      font-size: 16px;
+      margin-right: 5px; }
+  .mp-list table th.sorting-asc:before {
+    content: "\f0dd"; }
+  .mp-list table th.sorting-desc:before {
+    content: "\f0de";
+    position: relative;
+    top: 8px; }
+  .mp-list table td {
+    border: none !important;
+    vertical-align: middle !important; }
+  .mp-list .fa-circle {
+    font-size: 12px;
+    margin-right: 10px; }
+  .mp-list .labour i.fa-circle {
+    color: #E00600; }
+  .mp-list .conservative i.fa-circle {
+    color: #0061C8; }
+  .mp-list .liberal-democrat i.fa-circle {
+    color: #FEB000; }
+
+.mp {
+  margin-top: 80px; }
+  .mp .header {
+    color: #fff;
+    background: #666; }
+    .mp .header .image {
+      float: left;
+      width: 60px;
+      height: 60px;
+      position: relative;
+      overflow: hidden;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      margin-top: 5px;
+      margin-right: 15px; }
+      .mp .header .image img {
+        object-fit: cover;
+        min-height: 100%;
+        min-width: 100%; }
+    .mp .header h1 {
+      margin: 15px 0; }
+    .mp .header h4 {
+      font-weight: normal;
+      line-height: 1.3em; }
+      .mp .header h4 strong {
+        display: block; }
+  .mp .header-labour {
+    background-color: #E00600; }
+  .mp .header-conservative {
+    background-color: #0061C8; }
+  .mp .header-liberal-democrat {
+    background-color: #FEB000; }
+
+.chart rect:first-of-type {
   color: #fff;
-  background: #666; }
+  stroke: #3994b6;
+  fill: white; }
 
-.header-labour {
-  background-color: #E00600; }
+text:first-of-type {
+  fill: #3994b6;
+  font-family: sans-serif;
+  font-size: 12px; }
 
-.header-conservative {
-  background-color: #0061C8; }
+.chart rect:nth-of-type(2) {
+  color: #fff;
+  stroke: transparent;
+  fill: #3994b6; }
 
-.header-liberal-democrat {
-  background-color: #FEB000; }
+text:nth-of-type(2) {
+  fill: #a8d4e4;
+  font-family: sans-serif;
+  font-size: 12px; }
 
 /*# sourceMappingURL=app.css.map */
