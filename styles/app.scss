@@ -200,16 +200,17 @@ footer {
         text-decoration: inherit;
         font-size: 16px;
         margin-right: 5px;
+        position: relative;
       }
 
     }
     th.sorting-asc:before {
       content: "\f0dd";
+      top: -2px;
     }
     th.sorting-desc:before {
       content: "\f0de";
-        position: relative;
-        top: 8px;
+        top: 5px;
     }
     td {
       border: none!important;

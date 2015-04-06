@@ -113,13 +113,20 @@
             <div class="col-sm-3 box text-center">
                 <h2>Interests</h2>
 
-                <h3>&pound<%= financial_interests.toLocaleString() %></h3>
+                <h3>&pound<%= total_interests.toLocaleString() %></h3>
 
                 <div class="donut"></div>
 
-
-
                 <div id="mp-interests"></div>
+            </div>
+        <div class="col-sm-3 box text-center">
+                <h2>Expenses</h2>
+
+                <h3>&pound<%= total_expenses.toLocaleString() %></h3>
+
+                <div class="donut"></div>
+
+                <div id="mp-expenses"></div>
             </div>
         </div>
     </div>
@@ -155,8 +162,8 @@
 <script type="text/template" id="mplist-row">
     <td class="lead <%= clsName %>" data-sort-value="<%= list_name %>"><i title="<%= party %>" class="fa fa-circle"></i><a href="#mp/<%= id %>"><%= list_name %></a></td>
     <td data-sort-value="<%= constituency %>"><%= constituency %>,<br/><%= party %></td>
-    <td data-sort-value="<%= financial_interests %>">&pound;<%= financial_interests.toLocaleString() %></td>
-    <td data-sort-value="<%= expenses %>">&pound;<%= expenses.toLocaleString() %></td>
+    <td data-sort-value="<%= total_interests %>">&pound;<%= total_interests.toLocaleString() %></td>
+    <td data-sort-value="<%= total_expenses %>">&pound;<%= total_expenses.toLocaleString() %></td>
     <td data-sort-value="<%= votes_percentage %>"><%= votes_percentage %>&percnt;</td>
     <td><%= debates %></td>
     <td><%= answers %></td>
@@ -207,6 +214,9 @@
 <script src="js/modules/MP/index.js"></script>
 
 <script src="js/modules/Search/views/SearchView.js"></script>
+
+<!-- Source data -->
+<script src="src/data.js"></script>
 
 <!-- Init -->
 <script src="js/initialize.js"></script>

@@ -124,13 +124,14 @@ footer {
       font-weight: normal;
       text-decoration: inherit;
       font-size: 16px;
-      margin-right: 5px; }
+      margin-right: 5px;
+      position: relative; }
   .mp-list table th.sorting-asc:before {
-    content: "\f0dd"; }
+    content: "\f0dd";
+    top: -2px; }
   .mp-list table th.sorting-desc:before {
     content: "\f0de";
-    position: relative;
-    top: 8px; }
+    top: 5px; }
   .mp-list table td {
     border: none !important;
     vertical-align: middle !important; }
