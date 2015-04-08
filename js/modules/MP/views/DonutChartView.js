@@ -5,25 +5,28 @@ App.module('MP', function (MP) {
 
         render: function () {
 
-//            var dataset = {
-//                apples: [53245, 28479, 19697, 24037, 40245]
-//            };
+            console.log(this.options.data);
+
+            var dataset = this.options.data;
 
             var color = d3.scale.category20();
             var pie = d3.layout.pie()
-                .sort(null);
+                .sort(null)
+                .value(function(d) {
+                    return d.v;
+                });
 
-            var width = 200,
-                height = 200,
+            var width = Marionette.getOption(this, "width"),
+                height = Marionette.getOption(this, "height"),
                 radius = Math.min(width, height) / 2;
 
             var radius = radius = Math.min(width, height) / 2;
 
-            var piedata = pie(dataset.apples);
+            var pieData = pie(dataset);
 
             var arc = d3.svg.arc()
-                .innerRadius(radius - 100)
-                .outerRadius(radius - 50);
+                .outerRadius(radius - 45)
+                .innerRadius(radius - 60);
 
             var svg = d3.select(this.el).append("svg")
                 .attr("width", width)
@@ -32,12 +35,15 @@ App.module('MP', function (MP) {
                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
             var path = svg.selectAll("path")
-                .data(piedata)
+                .data(pieData)
               .enter().append("path")
                 .attr("fill", function(d, i) { return color(i); })
-                .attr("d", arc);
+                .attr("d", arc)
+            .on("mouseenter", function(d) {
+                   console.log(d);
+                });
 
-            svg.selectAll("text").data(piedata)
+            svg.selectAll("text").data(pieData)
                 .enter()
                 .append("text")
                 .attr("text-anchor", "middle")
@@ -48,13 +54,13 @@ App.module('MP', function (MP) {
                 })
                 .attr("y", function(d) {
                     var a = d.startAngle + (d.endAngle - d.startAngle)/2 - Math.PI/2;
-                    d.cy = Math.sin(a) * (radius - 75);
+                    d.cy = Math.sin(a) * (radius - 65);
                     return d.y = Math.sin(a) * (radius - 20);
                 })
                 .text(function(d) {
-                    console.log(d);
-                    return d.value;
+                    return d.data.k
                 })
+                .style("font-size", "10px");
 
 
         }
