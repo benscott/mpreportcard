@@ -8,14 +8,21 @@ App.module('MP', function (MP) {
             expenses: "#mp-expenses"
         },
         onShow: function () {
-            this.interests.show(new App.MP.BarChartView({
-                'average': App.module('Data').totals['interests_average'],
-                'value': this.model.get('total_interests')
-            }))
+//            this.interests.show(new App.MP.BarChartView({
+//                'average': App.module('Data').totals['interests_average'],
+//                'value': this.model.get('total_interests'),
+//                'status_description': 'Registered financial interests'
+//            }));
+
+            this.interests.show(new App.MP.DonutChartView({
+                'data': this.model.get('interests')
+            }));
+
             this.expenses.show(new App.MP.BarChartView({
                 'average': App.module('Data').totals['expenses_average'],
-                'value': this.model.get('total_expenses')
-            }))
+                'value': this.model.get('total_expenses'),
+                'status_description': 'Claimed expenses'
+            }));
         },
         getTemplate: function () {
             if (this.model) {

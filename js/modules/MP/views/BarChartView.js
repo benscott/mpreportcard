@@ -1,32 +1,31 @@
 App.module('MP', function (MP) {
     MP.BarChartView = Marionette.ItemView.extend({
-        template: _.template('<div></div><p><%= status %></p>'),
+        template: _.template('<div></div>' +
+            '<p><%= status_description %> of &pound;<%= value.toLocaleString() %>, <%= status %>.</p>'),
         minimum: 0.02,
-        tolerance: 0.1, // Percentage amount a value can be out by and considered average (10%)
 
         templateHelpers: function () {
             return {
-              status: this.options.status
+              status: this.options.status,
+              status_description: this.options.status_description,
+              value: this.options.value,
+              average: this.options.average
             };
           },
         initialize: function () {
             this.max = this.options.average * 2;
-
-            // Is this below/above average
-            // Get the tolerance value - the amount a value cna be out by and considered average
-           var tolerance_value = Marionette.getOption(this, "tolerance") * this.max
 
             // Use the getter so we have access to the default
             var min = Marionette.getOption(this, "minimum")
 
             var status
 
-            if(this.options.value >= (this.options.average - tolerance_value) && this.options.value <= (this.options.average + tolerance_value)){
-                status = 'average'
+            if(this.options.value == this.options.average){
+                status = 'is average for MPs'
             }else if(this.options.value >= (this.options.average)){
-                status = 'above'
+                status = '<strong>above</strong> the MP average of &pound;' + this.options.average.toLocaleString()
             }else{
-                status = 'below'
+                status = '<strong>below</strong> the MP average of &pound;' + this.options.average.toLocaleString()
             }
 
             this.options.status = status
@@ -34,7 +33,9 @@ App.module('MP', function (MP) {
             // We always want to show a little bar, so if the value is
             // Too small, pad it to 2%
             if ((this.options.value / this.max) < min) {
-                this.options.value = this.max * min
+                this.options.bar_value = this.max * min
+            }else{
+                this.options.bar_value = this.options.value
             }
 
         },
@@ -74,7 +75,7 @@ App.module('MP', function (MP) {
 
             // Create the bars
             chart.selectAll("rect")
-                .data([this.options.value])
+                .data([this.options.bar_value])
                 .enter().append("rect")
                 .style("fill", "url(#gradient)")
                 .attr("width", x)
