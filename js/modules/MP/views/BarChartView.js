@@ -1,34 +1,42 @@
 App.module('MP', function (MP) {
     MP.BarChartView = Marionette.ItemView.extend({
         template: _.template('<div></div>' +
-            '<p><%= status_description %> of &pound;<%= value.toLocaleString() %>, <%= status %>.</p>'),
+            '<p><%= status_text %>, <%= status %>.</p>'),
         minimum: 0.02,
+        type: 'integer',
 
         templateHelpers: function () {
             return {
-              status: this.options.status,
-              status_description: this.options.status_description,
+              status: this.status,
+              status_text: this.options.status_text,
               value: this.options.value,
               average: this.options.average
             };
           },
         initialize: function () {
-            this.max = this.options.average * 2;
 
-            // Use the getter so we have access to the default
-            var min = Marionette.getOption(this, "minimum")
+            var average
 
-            var status
-
-            if(this.options.value == this.options.average){
-                status = 'is average for MPs'
-            }else if(this.options.value >= (this.options.average)){
-                status = '<strong>above</strong> the MP average of &pound;' + this.options.average.toLocaleString()
+            if (this.options.type == 'money') {
+                average = '&pound;' + this.options.average.toLocaleString()
+            }
+            else  if (this.options.type == 'percentage'){
+                average = this.options.average + '%'
             }else{
-                status = '<strong>below</strong> the MP average of &pound;' + this.options.average.toLocaleString()
+                average = this.options.average.toLocaleString()
             }
 
-            this.options.status = status
+            if(this.options.value == this.options.average){
+                this.status = 'which is the MP average'
+            }else if(this.options.value >= (this.options.average)){
+                this.status = '<strong>above</strong> the MP average of ' + average
+            }else{
+                this.status = '<strong>below</strong> the MP average of ' + average
+            }
+
+            this.max = this.options.average * 2;
+            // Use the getter so we have access to the default
+            var min = Marionette.getOption(this, "minimum")
 
             // We always want to show a little bar, so if the value is
             // Too small, pad it to 2%
@@ -58,7 +66,6 @@ App.module('MP', function (MP) {
                 .attr("stop-color", "#FD4B04")
                 .attr("stop-opacity", 1);
 
-
             gradient.append("svg:stop")
                 .attr("offset", "47%")
                 .attr("stop-color", "#FCC308")
@@ -80,10 +87,6 @@ App.module('MP', function (MP) {
                 .style("fill", "url(#gradient)")
                 .attr("width", x)
                 .attr("height", 10)
-
-//            $(this.el).append('<p>' +this.status+ '</p>')
-
-
         }
     });
 });

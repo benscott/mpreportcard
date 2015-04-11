@@ -95,6 +95,7 @@
 </script>
 
 <script type="text/template" id="mp">
+
     <div class="header header-<%= clsName %>">
         <div class="container">
             <div class="row">
@@ -110,24 +111,82 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-3 box text-center">
-                <h2>Interests</h2>
+            <div class="col-sm-3">
+                <div class="box text-center">
+                    <h2>Interests</h2>
 
-                <h3>&pound<%= total_interests.toLocaleString() %></h3>
+                    <h3>&pound<%= total_interests.toLocaleString() %></h3>
 
-                <div class="donut"></div>
-
-                <div id="mp-interests"></div>
+                    <div id="mp-interests">
+                    </div>
+                </div>
             </div>
-        <div class="col-sm-3 box text-center">
-                <h2>Expenses</h2>
+            <div class="col-sm-3">
+                <div class="box text-center">
+                    <h2>Expenses</h2>
 
-                <h3>&pound<%= total_expenses.toLocaleString() %></h3>
+                    <h3>&pound<%= total_expenses.toLocaleString() %></h3>
 
-                <div class="donut"></div>
+                    <div id="mp-expenses">
+                    </div>
 
-                <div id="mp-expenses"></div>
+                </div>
+
             </div>
+            <div class="col-sm-3">
+                <div class="box text-center">
+                    <h2>Debates</h2>
+
+                    <h3><%= debates %></h3>
+
+                    <div id="mp-debates"></div>
+
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="box text-center">
+                    <h2>Q&As</h2>
+
+                    <h3><%= answers %></h3>
+
+                    <div id="mp-answers"></div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="box text-center">
+                    <h2>Votes</h2>
+
+                    <h3><%= votes_percentage %>&percnt;</h3>
+
+                    <div id="mp-votes"></div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="box text-center">
+                    <h2>Letters</h2>
+
+                    <h3><%= replies_percentage %>&percnt;</h3>
+
+                    <div id="mp-replies"></div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="box text-center">
+                    <h2>Rebellions</h2>
+
+                    <h3><%= rebel_votes %></h3>
+
+                    <div id="mp-rebel-votes"></div>
+
+                </div>
+            </div>
+
         </div>
     </div>
 </script>
