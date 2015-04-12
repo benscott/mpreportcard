@@ -1,94 +1,82 @@
 App.module('MP', function (MP) {
-    MP.MPView = Marionette.Layout.extend({
+    MP.MPView = Marionette.ItemView.extend({
         className: 'mp',
         template: '#mp',
         emptyTemplate: '#mp-404',
-        regions: {
-            interests: "#mp-interests",
-            expenses: "#mp-expenses",
-            debates: "#mp-debates",
-            answers: "#mp-answers",
-            votes: "#mp-votes",
-            replies: "#mp-replies",
-            rebel_votes: "#mp-rebel-votes",
-            edms: "#mp-edms"
+
+        initialize: function () {
+
+            var _this = this
+            var status = {}
+
+            _.each(App.module('Data').averages, function( average, key ) {
+
+                var value = _this.model.get(key)
+                var tolerance_value = average * 0.05
+
+                if (value >= (average - tolerance_value) && value <= (average + tolerance_value)) {
+                    status[key] = 'average'
+                } else if (value >= (average)) {
+                    status[key] = 'Above average'
+                } else {
+                    status[key] = 'Below average'
+                }
+
+            });
+
+            this.model.set('status', status)
+
         },
-        onShow: function () {
 
-            this.interests.show(new App.MP.BarChartView({
-                'average': App.module('Data').averages['interests'],
-                'value': this.model.get('interests'),
-                'status_text': 'Registered financial interests of &pound;' + this.model.get('interests').toLocaleString(),
-                'type': 'money'
-            }));
-
-            this.expenses.show(new App.MP.BarChartView({
-                'average': App.module('Data').averages['expenses'],
-                'value': this.model.get('expenses'),
-                'status_text': 'Claimed expenses of &pound;' + this.model.get('expenses').toLocaleString(),
-                'type': 'money'
-            }));
-
-            this.debates.show(new App.MP.BarChartView({
-                'average': App.module('Data').averages['debates'],
-                'value': this.model.get('debates'),
-                'status_text': 'Has spoken ' + this.model.get('speeches') + ' times in ' +  this.model.get('debates') + ' debates'
-            }));
-
-            if (this.model.get('answers') == 0 && this.model.get('govt')){
-                 this.answers.show(new App.MP.EmptyView(
-                     {'reason': 'Government ministers do not ask written questions.'}
-                 ))
-            }else{
-                this.answers.show(new App.MP.BarChartView({
-                    'average': App.module('Data').averages['answers'],
-                    'value': this.model.get('answers'),
-                    'status_text': 'Received answers to ' +  this.model.get('answers') + ' questions'
-                }));
-            }
+        templateHelpers: function () {
+            return {
+                getStatus: function (key) {
 
 
-            this.votes.show(new App.MP.BarChartView({
-                'average': App.module('Data').averages['votes'],
-                'value': this.model.get('votes_percentage'),
-                'status_text': 'Attended ' + this.model.get('votes_attended') + ' out of '  + this.model.get('votes_possible') + ' votes',
-                'type': 'percentage'
-            }));
+                    if ((key == 'answers' || key == 'edms') && this.govt){
+                        return '<div class="traffic-light na"></div>'
+                    }
 
-            if (this.model.get('replies_percentage') == 0 && this.model.get('data_quality_indicator') != 'good'){
-                 this.replies.show(new App.MP.EmptyView(
-                     {'reason': 'No information for this MP is available on WriteToThem.'}
-                 ))
-            }else{
-                this.replies.show(new App.MP.BarChartView({
-                    'average': App.module('Data').averages['replies'],
-                    'value': this.model.get('replies_percentage'),
-                    'status_text': 'Replied to ' + this.model.get('replies') + ' out of '  + this.model.get('surveys') + ' letters',
-                    'type': 'percentage'
-                }));
-            }
+                    var status = this.status[key]
+                    return '<div class="traffic-light ' + status.toLowerCase().replace(' ', '-') + '"><span>' + status + '</span></div>'
 
-
-            this.rebel_votes.show(new App.MP.BarChartView({
-                'average': App.module('Data').averages['rebel_votes'],
-                'value': this.model.get('rebel_votes'),
-                'status_text': 'Voted against their party in ' + this.model.get('rebel_votes') + ' votes'
-            }));
-
-            if (this.model.get('edms') == 0 && this.model.get('govt')){
-                 this.edms.show(new App.MP.EmptyView(
-                     {'reason': 'Government ministers do not submit Early Day Motions.'}
-                 ))
-            }else{
-                this.edms.show(new App.MP.BarChartView({
-                    'average': App.module('Data').averages['edms'],
-                    'value': this.model.get('edms'),
-                    'status_text': 'Submitted ' + this.model.get('edms') + ' Early Day Motions'
-                }));
-            }
+                },
+                debates_description: function () {
+                    return 'Has spoken ' + this.speeches + ' times in ' + this.debates + ' debates. The MP average was ' + App.module('Data').averages['debates'] + ' debates.'
+                },
+                interests_description: function () {
+                    return 'Financial interests declared by ' + this.name + '. The MP average was &pound' + App.module('Data').averages['interests'].toLocaleString() + '.'
+                },
+                expenses_description: function () {
+                    return this.name + ' declared expenses totalling &pound' + this.expenses.toLocaleString() + ' in this parliament. The MP average was &pound' + App.module('Data').averages['expenses'].toLocaleString() + '.'
+                },
+                answers_description: function () {
+                    if (this.govt){
+                        return 'Government ministers do not submit written questions.'
+                    }else{
+                        return 'Received answers to ' +  this.answers + ' written questions. The MP average was ' + App.module('Data').averages['answers'] + '.'
+                    }
+                },
+                votes_description: function () {
+                    return 'Attended ' + this.votes_attended + ' out of '  + this.votes_possible + ' votes.  The average attendance was ' + App.module('Data').averages['votes_percentage'] + '&percnt;.'
+                },
+                replies_description: function () {
+                    return  'Replied to ' + this.replies + ' out of '  + this.surveys + ' letters sent via WriteToThem in 2013. The average reply rate was ' + App.module('Data').averages['replies'] + '&percnt;.'
+                },
+                rebel_votes_description: function () {
+                    return  'Voted against their party in ' + this.rebel_votes + ' votes. The MP average was ' + App.module('Data').averages['rebel_votes'] + '.'
+                },
+                edms_description: function () {
+                    if (this.govt) {
+                       return 'Government ministers do not submit Early Day Motions.'
+                    }else{
+                        return  'Submitted ' + this.edms + ' Early Day Motions. The MP average was ' + App.module('Data').averages['edms'] + '.'
+                    }
+                }
 
 
 
+            };
         },
         getTemplate: function () {
             if (this.model) {
@@ -103,5 +91,5 @@ App.module('MP', function (MP) {
             $('#navbar li').removeClass('active');
             $('#navbar li a[href="#mp"]').parent().addClass('active');
         }
-     });
+    });
 });

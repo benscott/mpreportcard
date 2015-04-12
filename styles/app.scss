@@ -1,4 +1,5 @@
 $dark-grey: #1E222C;
+$grey: #444;
 $light-grey: #F6F6F6;
 $black: #000;
 $green: #7A7F51;
@@ -8,6 +9,10 @@ $cons-color: #0061C8;
 $lib-color: #FEB000;
 $ukip-color: #5B0066;
 $sdlp-color: #0C5C40;
+
+$traffic-light-green: #6FC402;
+$traffic-light-amber: #F3CA00;
+$traffic-light-red: #F86C00;
 
 html, body {
   width: 100%;
@@ -258,6 +263,7 @@ footer {
       border: 2px solid #fff;
       margin-top: 5px;
       margin-right: 15px;
+      margin-bottom: 5px;
 
       img {
         object-fit: cover;
@@ -268,7 +274,16 @@ footer {
     }
 
     h1 {
-      margin: 15px 0;
+      margin: 15px 0 0 0;
+    }
+
+    h1.with-post{
+      margin: 5px 0 2px 0;
+    }
+
+    h6{
+      margin: 0
+
     }
 
     h4 {
@@ -295,42 +310,103 @@ footer {
     background-color: $lib-color;
   }
 
-  .header-uk-independence-party{
+  .header-uk-independence-party {
     background-color: $ukip-color;
   }
 
-}
+  table {
+    max-width: 800px;
+    margin: 20px auto;
 
-.mp .box {
-  background: $light-grey;
+    tr {
+      padding: 10px 0;
 
-  .bar-chart {
-    background: #fff;
+      th, td{
+        padding: 10px 0;
+        vertical-align: middle;
+      }
+
+    }
+
+    th {
+
+      color: $grey;
+
+      h2{
+        margin: 0 0 5px 0;
+        font-size: 22px;
+      }
+
+      p{
+        font-weight: normal;
+        margin-right: 80px;
+        font-size: 13px;
+      }
+
+    }
+
+    td {
+
+      h3{
+        font-size: 28px;
+        margin: 0;
+      }
+
+      .traffic-light {
+
+        width: 60px;
+        height: 60px;
+        border-radius: 150px;
+        -webkit-border-radius: 150px;
+        -moz-border-radius: 150px;
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 11px;
+        overflow: hidden;
+
+        span {
+          display: block;
+          padding-top: 15px;
+        }
+
+      }
+
+      .average {
+        background: $traffic-light-amber;
+        span {
+          padding-top: 23px;
+        }
+
+      }
+
+      .above-average {
+        background: $traffic-light-green;
+      }
+
+      .below-average {
+        background: $traffic-light-red;
+      }
+
+      .na {
+        background: $light-grey;
+      }
+
+    }
+
+    tr.inverse {
+      // Inverted color - less is better
+
+      .below-average {
+        background: $traffic-light-green;
+      }
+
+      .above-average {
+        background: $traffic-light-red;
+      }
+
+    }
+
   }
 
-
-}
-
-//#mp-expenses-donut{
-//  width: 500px;
-//  height: 500px;
-//}
-//
-div.donut {
-
-  svg {
-    width: 100%;
-    height: 100%
-  }
-
-  path.slice {
-    stroke-width: 2px;
-  }
-
-  polyline {
-    opacity: .3;
-    stroke: black;
-    stroke-width: 1px;
-    fill: none;
-  }
 }
