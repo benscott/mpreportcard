@@ -105,9 +105,9 @@
 
 
                     <% if (post) { %>
-                        <h6 class="post">
-                            <%= post %>
-                        </h6>
+                    <h6 class="post">
+                        <%= post %>
+                    </h6>
                     <% } %>
 
 
@@ -120,120 +120,127 @@
     </div>
     <div class="container">
         <div class="row">
-                <table>
-                    <tbody>
-                        <tr class="inverse">
-                            <th class="col-xs-5">
-                                <h2>Financial Interests</h2>
-                                <p><%= interests_description() %></p>
-                            </th>
-                            <td class="col-xs-2">
-                                <h3>&pound<%= interests.toLocaleString() %></h3>
-                            </td>
-                            <td class="col-xs-1">
-                                <%= getStatus('interests') %>
-                            </td>
-                        </tr>
+            <table>
+                <tbody>
+                <tr class="inverse">
+                    <th class="col-xs-5">
+                        <h2>Financial Interests</h2>
 
-                        <tr class="inverse">
-                            <th class="col-xs-5">
-                                <h2>Expenses</h2>
-                                <p><%= expenses_description() %></p>
-                            </th>
-                            <td class="col-xs-2">
-                                <h3>&pound<%= expenses.toLocaleString() %></h3>
-                            </td>
-                            <td class="col-xs-1">
-                                <%= getStatus('expenses') %>
-                            </td>
-                        </tr>
+                        <p><%= interests_description() %></p>
+                    </th>
+                    <td class="col-xs-2">
+                        <h3>&pound<%= interests.toLocaleString() %></h3>
+                    </td>
+                    <td class="col-xs-1">
+                        <%= getStatus('interests') %>
+                    </td>
+                </tr>
 
-                        <tr>
-                            <th class="col-xs-5">
-                                <h2>Votes</h2>
-                                <p><%= votes_description() %></p>
-                            </th>
-                            <td class="col-xs-2">
-                                <h3><%= votes_percentage %>&percnt;</h3>
-                            </td>
-                            <td class="col-xs-1">
-                                <%= getStatus('votes_percentage') %>
-                            </td>
-                        </tr>
+                <tr class="inverse">
+                    <th class="col-xs-5">
+                        <h2>Expenses</h2>
 
-                        <tr>
-                            <th class="col-xs-5">
-                                <h2>Replies to letters</h2>
-                                <p><%= replies_description() %></p>
-                            </th>
-                            <td class="col-xs-2">
-                                <h3><%= replies %>&percnt;</h3>
-                            </td>
-                            <td class="col-xs-1">
-                                <%= getStatus('replies') %>
-                            </td>
-                        </tr>
+                        <p><%= expenses_description() %></p>
+                    </th>
+                    <td class="col-xs-2">
+                        <h3>&pound<%= expenses.toLocaleString() %></h3>
+                    </td>
+                    <td class="col-xs-1">
+                        <%= getStatus('expenses') %>
+                    </td>
+                </tr>
 
-                        <tr>
-                            <th class="col-xs-5">
-                                <h2>Debates</h2>
-                                <p><%= debates_description() %></p>
-                            </th>
-                            <td class="col-xs-2">
-                                <h3><%= debates %></h3>
-                            </td>
-                            <td class="col-xs-1">
-                                <%= getStatus('debates') %>
-                            </td>
-                        </tr>
+                <tr>
+                    <th class="col-xs-5">
+                        <h2>Votes</h2>
 
-                        <tr>
-                            <th class="col-xs-5">
-                                <h2>Answers</h2>
-                                <p><%= answers_description() %></p>
-                            </th>
-                            <td class="col-xs-2">
-                                <% if (!govt) { %>
-                                    <h3><%= answers %></h3>
-                                <% } %>
-                            </td>
-                            <td class="col-xs-1">
-                                <%= getStatus('answers') %>
-                            </td>
-                        </tr>
+                        <p><%= votes_description() %></p>
+                    </th>
+                    <td class="col-xs-2">
+                        <h3><%= votes_percentage %>&percnt;</h3>
+                    </td>
+                    <td class="col-xs-1">
+                        <%= getStatus('votes_percentage') %>
+                    </td>
+                </tr>
 
-                        <tr>
-                            <th class="col-xs-5">
-                                <h2>Rebel votes</h2>
-                                <p><%= rebel_votes_description() %></p>
-                            </th>
-                            <td class="col-xs-2">
-                                <h3><%= rebel_votes %></h3>
-                            </td>
-                            <td class="col-xs-1">
-                                <%= getStatus('rebel_votes') %>
-                            </td>
-                        </tr>
+                <tr>
+                    <th class="col-xs-5">
+                        <h2>Replies to letters</h2>
 
-                        <tr>
-                            <th class="col-xs-5">
-                                <h2>Early day motions</h2>
-                                <p><%= edms_description() %></p>
-                            </th>
-                            <td class="col-xs-2">
-                                <% if (!govt) { %>
-                                    <h3><%= edms %></h3>
-                                <% } %>
-                            </td>
-                            <td class="col-xs-1">
-                                <%= getStatus('edms') %>
-                            </td>
-                        </tr>
+                        <p><%= replies_description() %></p>
+                    </th>
+                    <td class="col-xs-2">
+                        <h3><%= replies %>&percnt;</h3>
+                    </td>
+                    <td class="col-xs-1">
+                        <%= getStatus('replies') %>
+                    </td>
+                </tr>
 
-                    </tbody>
+                <tr>
+                    <th class="col-xs-5">
+                        <h2>Debates</h2>
 
-                </table>
+                        <p><%= debates_description() %></p>
+                    </th>
+                    <td class="col-xs-2">
+                        <h3><%= debates %></h3>
+                    </td>
+                    <td class="col-xs-1">
+                        <%= getStatus('debates') %>
+                    </td>
+                </tr>
 
+                <tr>
+                    <th class="col-xs-5">
+                        <h2>Answers</h2>
+
+                        <p><%= answers_description() %></p>
+                    </th>
+                    <td class="col-xs-2">
+                        <% if (!govt) { %>
+                        <h3><%= answers %></h3>
+                        <% } %>
+                    </td>
+                    <td class="col-xs-1">
+                        <%= getStatus('answers') %>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-5">
+                        <h2>Rebel votes</h2>
+
+                        <p><%= rebel_votes_description() %></p>
+                    </th>
+                    <td class="col-xs-2">
+                        <h3><%= rebel_votes %></h3>
+                    </td>
+                    <td class="col-xs-1">
+                        <%= getStatus('rebel_votes') %>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="col-xs-5">
+                        <h2>Early day motions</h2>
+
+                        <p><%= edms_description() %></p>
+                    </th>
+                    <td class="col-xs-2">
+                        <% if (!govt) { %>
+                        <h3><%= edms %></h3>
+                        <% } %>
+                    </td>
+                    <td class="col-xs-1">
+                        <%= getStatus('edms') %>
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
 
 
         </div>
@@ -288,6 +295,70 @@
     Sorry, no MPs found
 </script>
 
+<script type="text/template" id="stats">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="box">
+                    <h2>Interests</h2>
+
+                    <div id="stats-interests"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--<div class="row">-->
+
+            <!--<div class="col-sm-4">-->
+                <!--<div class="box">-->
+                    <!--<h2>Expenses</h2>-->
+
+                    <!--<div id="stats-expenses"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-4">-->
+                <!--<div class="box">-->
+                    <!--<h2>Debates</h2>-->
+
+                    <!--<div id="stats-debates"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+
+        <!--<div class="row">-->
+
+            <!--<div class="col-sm-3"><h2>Answers</h2>-->
+
+                <!--<div id="stats-answers"></div>-->
+            <!--</div>-->
+
+            <!--<div class="col-sm-3"><h2>Votes</h2>-->
+
+                <!--<div id="stats-votes"></div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-3"><h2>Replies</h2>-->
+
+                <!--<div id="stats-replies"></div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-3"><h2>Rebel votes</h2>-->
+
+                <!--<div id="stats-rebel-votes"></div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-3"><h2>EDMS</h2>-->
+
+                <!--<div id="stats-edms"></div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    </div>
+
+</script>
+
 <!-- Dependencies -->
 <!-- FIXME: Use MIN -->
 <script src="vendor/bower/jquery/dist/jquery.min.js"></script>
@@ -298,6 +369,7 @@
 <script src="vendor/stupidtable.min.js"></script>
 <script src="vendor/bower/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="vendor/bower/d3/d3.min.js"></script>
+<script src="vendor/bower/approximate-number/lib/approximate-number.js"></script>
 
 <!-- App and Helpers -->
 <script src="js/App.js"></script>
@@ -327,10 +399,17 @@
 <script src="js/modules/MP/Router.js"></script>
 <script src="js/modules/MP/index.js"></script>
 
+<script src="js/modules/Stats/views/BarChartView.js"></script>
+<script src="js/modules/Stats/views/StatsView.js"></script>
+<script src="js/modules/Stats/Controller.js"></script>
+<script src="js/modules/Stats/Router.js"></script>
+<script src="js/modules/Stats/index.js"></script>
+
 <script src="js/modules/Search/views/SearchView.js"></script>
 
 <!-- Source data -->
 <script src="src/data.js"></script>
+<script src="src/stats.js"></script>
 
 <!-- Init -->
 <script src="js/initialize.js"></script>

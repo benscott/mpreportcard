@@ -8,6 +8,8 @@ h1, h2, h3 {
 #appBody {
   color: #1E222C;
   min-height: 200px; }
+  #appBody .container {
+    margin-top: 80px; }
 
 .text-muted {
   color: #7A7F51; }
@@ -236,5 +238,42 @@ footer {
       background: #6FC402; }
     .mp table tr.inverse .above-average {
       background: #F86C00; }
+
+.stats .box {
+  background: #F6F6F6;
+  text-align: center;
+  padding-top: 30px; }
+  .stats .box h2 {
+    margin-top: 0; }
+
+.chart {
+  margin: 5px; }
+
+.chart rect {
+  stroke: white; }
+
+path.line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px; }
+
+path.area {
+  fill: #e7e7e7; }
+
+.axis {
+  shape-rendering: crispEdges; }
+
+.x.axis line {
+  stroke: #fff; }
+
+.x.axis .minor {
+  stroke-opacity: .5; }
+
+.x.axis path {
+  display: none; }
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000; }
 
 /*# sourceMappingURL=app.css.map */
