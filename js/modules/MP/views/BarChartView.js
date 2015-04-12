@@ -48,6 +48,9 @@ App.module('MP', function (MP) {
 
         },
         onRender: function(){
+
+            var redColor = "#FD4B04", greenColor = "#55BA09"
+
             var chart = d3.select(this.el).select('div').append("svg") // creating the svg object inside the container div
                 .attr("class", "bar-chart")
                 .attr("width", 180) // bar has a fixed width
@@ -63,19 +66,18 @@ App.module('MP', function (MP) {
 
             gradient.append("svg:stop")
                 .attr("offset", "0%")
-                .attr("stop-color", "#FD4B04")
+                .attr("stop-color", this.options.type == 'money' ? redColor : greenColor)
                 .attr("stop-opacity", 1);
 
             gradient.append("svg:stop")
-                .attr("offset", "47%")
+                .attr("offset", "50%")
                 .attr("stop-color", "#FCC308")
                 .attr("stop-opacity", 1);
 
             gradient.append("svg:stop")
                 .attr("offset", "100%")
-                .attr("stop-color", "#55BA09")
+                .attr("stop-color", this.options.type == 'money' ? greenColor : redColor)
                 .attr("stop-opacity", 1);
-
 
             // takes the fixed width and creates the percentage from the data values
             var x = d3.scale.linear().domain([0, this.max]).range([0, 180]);

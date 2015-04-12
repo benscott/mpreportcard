@@ -99,11 +99,22 @@
     <div class="header header-<%= clsName %>">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-7">
                     <div class="image"><img class="img-responsive" src="/src/images/<%= id %>.jpg" alt="<%= name %>"></div>
                     <h1><%= name %></h1>
+
+
+                    <% if (posts) { %>
+                        <h6>
+                            <% _.each(posts.split('|'), function(post){ %>
+                                <%= post %>
+                            <% }); %>
+                        </h6>
+                    <% } %>
+
+
                 </div>
-                <div class="col-sm-4 text-right">
+                <div class="col-sm-5 text-right">
                     <h4><strong><%= party %></strong><%= constituency %></h4>
                 </div>
             </div>
@@ -115,7 +126,7 @@
                 <div class="box text-center">
                     <h2>Interests</h2>
 
-                    <h3>&pound<%= total_interests.toLocaleString() %></h3>
+                    <h3>&pound<%= interests.toLocaleString() %></h3>
 
                     <div id="mp-interests">
                     </div>
@@ -125,7 +136,7 @@
                 <div class="box text-center">
                     <h2>Expenses</h2>
 
-                    <h3>&pound<%= total_expenses.toLocaleString() %></h3>
+                    <h3>&pound<%= expenses.toLocaleString() %></h3>
 
                     <div id="mp-expenses">
                     </div>
@@ -153,6 +164,9 @@
 
                 </div>
             </div>
+
+        </div>
+        <div class="row">
 
             <div class="col-sm-3">
                 <div class="box text-center">
@@ -187,6 +201,21 @@
                 </div>
             </div>
 
+            <div class="col-sm-3">
+                <div class="box text-center">
+                    <h2>EDMS</h2>
+
+                    <h3><%= edms %></h3>
+
+                    <div id="mp-edms"></div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+
         </div>
     </div>
 </script>
@@ -206,9 +235,12 @@
                         <th class="col-xs-3" data-sort="string">Constituency</th>
                         <th class="col-xs-1" data-sort="float">Interests</th>
                         <th class="col-xs-1" data-sort="float">Expenses</th>
-                        <th class="col-xs-1" data-sort="float">Votes</th>
                         <th class="col-xs-1" data-sort="int">Debates</th>
                         <th class="col-xs-1" data-sort="int">Answers</th>
+                        <th class="col-xs-1" data-sort="float">Votes</th>
+                        <th class="col-xs-1" data-sort="float">Replies</th>
+                        <th class="col-xs-1" data-sort="float">Rebellions</th>
+                        <th class="col-xs-1" data-sort="float">EDMS</th>
                     </tr>
                     </thead>
                     <tbody data-item-view-container></tbody>
@@ -220,12 +252,15 @@
 
 <script type="text/template" id="mplist-row">
     <td class="lead <%= clsName %>" data-sort-value="<%= list_name %>"><i title="<%= party %>" class="fa fa-circle"></i><a href="#mp/<%= id %>"><%= list_name %></a></td>
-    <td data-sort-value="<%= constituency %>"><%= constituency %>,<br/><%= party %></td>
-    <td data-sort-value="<%= total_interests %>">&pound;<%= total_interests.toLocaleString() %></td>
-    <td data-sort-value="<%= total_expenses %>">&pound;<%= total_expenses.toLocaleString() %></td>
-    <td data-sort-value="<%= votes_percentage %>"><%= votes_percentage %>&percnt;</td>
+    <td data-sort-value="<%= constituency %>"><%= constituency %></td>
+    <td data-sort-value="<%= interests %>">&pound;<%= interests.toLocaleString() %></td>
+    <td data-sort-value="<%= expenses %>">&pound;<%= expenses.toLocaleString() %></td>
     <td><%= debates %></td>
     <td><%= answers %></td>
+    <td data-sort-value="<%= votes_percentage %>"><%= votes_percentage %>&percnt;</td>
+    <td data-sort-value="<%= replies_percentage %>"><%= replies_percentage %>&percnt;</td>
+    <td><%= rebel_votes %></td>
+    <td><%= edms %></td>
 </script>
 
 <script type="text/template" id="mplist-empty">
@@ -267,6 +302,7 @@
 <script src="js/modules/Page/index.js"></script>
 
 <script src="js/modules/MP/views/MPView.js"></script>
+<script src="js/modules/MP/views/MPEmptyView.js"></script>
 <script src="js/modules/MP/views/BarChartView.js"></script>
 <script src="js/modules/MP/views/DonutChartView.js"></script>
 <script src="js/modules/MP/Controller.js"></script>
