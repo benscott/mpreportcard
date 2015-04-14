@@ -50,7 +50,6 @@
     "commit": "3990472a14a32dc3641207b07a2ceefac37caaf8"
   },
   "_source": "git://github.com/nfriedly/approximate-number.git",
-  "_target": "~1.1.2",
-  "_originalSource": "approximate-number",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "approximate-number"
 }

@@ -171,10 +171,10 @@
                         <p><%= replies_description() %></p>
                     </th>
                     <td class="col-xs-2">
-                        <h3><%= replies %>&percnt;</h3>
+                        <h3><%= replies_percentage %>&percnt;</h3>
                     </td>
                     <td class="col-xs-1">
-                        <%= getStatus('replies') %>
+                        <%= getStatus('replies_percentage') %>
                     </td>
                 </tr>
 
@@ -301,63 +301,36 @@
         <div class="row">
 
             <div class="col-sm-12">
-                <div class="box">
-                    <h2>Interests</h2>
-
-                    <div id="stats-interests"></div>
-                </div>
-
+                <h2>Total</h2>
+                <div id="stats-total"></div>
             </div>
 
         </div>
 
-        <!--<div class="row">-->
-
-            <!--<div class="col-sm-4">-->
-                <!--<div class="box">-->
-                    <!--<h2>Expenses</h2>-->
-
-                    <!--<div id="stats-expenses"></div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4">-->
-                <!--<div class="box">-->
-                    <!--<h2>Debates</h2>-->
-
-                    <!--<div id="stats-debates"></div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-        <!--</div>-->
-
-        <!--<div class="row">-->
-
-            <!--<div class="col-sm-3"><h2>Answers</h2>-->
-
-                <!--<div id="stats-answers"></div>-->
-            <!--</div>-->
-
-            <!--<div class="col-sm-3"><h2>Votes</h2>-->
-
-                <!--<div id="stats-votes"></div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-3"><h2>Replies</h2>-->
-
-                <!--<div id="stats-replies"></div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-3"><h2>Rebel votes</h2>-->
-
-                <!--<div id="stats-rebel-votes"></div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-3"><h2>EDMS</h2>-->
-
-                <!--<div id="stats-edms"></div>-->
-            <!--</div>-->
-
-        <!--</div>-->
     </div>
 
 </script>
+
+<script type="text/template" id="stats-total-graph">
+    <form>
+        <select>
+            <option value="financial_interests" selected="selected">Financial interests</option>
+            <option value="expenses">Expenses</option>
+            <option value="debates">Debates</option>
+            <option value="votes">Votes</option>
+            <option value="answers">Answers</option>
+            <option value="edms">Early Day Motions</option>
+            <option value="rebel_votes">Rebel votes</option>
+            <option value="replies">Replies to letters</option>
+        </select>
+        <fieldset id="average-or-total">
+            <input type="radio" name="type" id="type-total" checked="checked" value="total"><label for="type-total">Total</label>
+            <input type="radio" name="type" id="type-average" value="average"><label for="type-average">Average per MP</label>
+        </fieldset>
+    </form>
+    <div class="graph"></div>
+</script>
+
 
 <!-- Dependencies -->
 <!-- FIXME: Use MIN -->
@@ -369,6 +342,7 @@
 <script src="vendor/stupidtable.min.js"></script>
 <script src="vendor/bower/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="vendor/bower/d3/d3.min.js"></script>
+<script src="vendor/bower/d3-tip/index.js"></script>
 <script src="vendor/bower/approximate-number/lib/approximate-number.js"></script>
 
 <!-- App and Helpers -->
@@ -379,6 +353,7 @@
 <!-- Data -->
 <script src="js/modules/Data/models/MP.js"></script>
 <script src="js/modules/Data/models/MPs.js"></script>
+<script src="js/modules/Data/models/Stats.js"></script>
 <script src="js/modules/Data/index.js"></script>
 
 <!-- Modules -->

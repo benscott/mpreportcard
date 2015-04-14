@@ -42,7 +42,7 @@ App.module('MP', function (MP) {
 
                 },
                 debates_description: function () {
-                    return 'Has spoken ' + this.speeches + ' times in ' + this.debates + ' debates. The MP average was ' + App.module('Data').averages['debates'] + ' debates.'
+                    return 'Has spoken ' + this.speeches + ' times in ' + this.debates + ' debates. On average, an MP spoke in ' + App.module('Data').averages['debates'] + ' debates.'
                 },
                 interests_description: function () {
                     return 'Financial interests declared by ' + this.name + '. The MP average was &pound' + App.module('Data').averages['interests'].toLocaleString() + '.'
@@ -61,7 +61,7 @@ App.module('MP', function (MP) {
                     return 'Attended ' + this.votes_attended + ' out of '  + this.votes_possible + ' votes.  The average attendance was ' + App.module('Data').averages['votes_percentage'] + '&percnt;.'
                 },
                 replies_description: function () {
-                    return  'Replied to ' + this.replies + ' out of '  + this.surveys + ' letters sent via WriteToThem in 2013. The average reply rate was ' + App.module('Data').averages['replies'] + '&percnt;.'
+                    return  'Replied to ' + this.replies + ' out of '  + this.surveys + ' letters sent via WriteToThem in 2013. The average reply rate was ' + App.module('Data').averages['replies_percentage'] + '&percnt;.'
                 },
                 rebel_votes_description: function () {
                     return  'Voted against their party in ' + this.rebel_votes + ' votes. The MP average was ' + App.module('Data').averages['rebel_votes'] + '.'

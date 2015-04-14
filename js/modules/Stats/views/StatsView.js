@@ -3,23 +3,18 @@ App.module('Stats', function (Stats) {
         className: 'stats',
         template: '#stats',
         regions: {
-            interests: "#stats-interests"
+            total: "#stats-total",
+            expenses: "#stats-expenses"
         },
         onShow: function () {
-            this.interests.show(new App.Stats.BarChartView({
-                data: this.options.data['financial_interests']
+            this.total.show(new App.Stats.BarChartView({
+                model: this.model
             }));
-//            this.expenses.show(new App.Stats.BarChartView({
-//                data: this.options.data['expenses']
-//            }));
-//            this.debates.show(new App.Stats.BarChartView({
-//                data: this.options.data['debates']
-//            }));
+        },
+        onRender: function () {
+            // Make Stats page item active
+            $('#navbar li').removeClass('active');
+            $('#navbar li a[href="#stats"]').parent().addClass('active');
         }
-//        onRender: function () {
-//            // Make Stats page item active
-//            $('#navbar li').removeClass('active');
-//            $('#navbar li a[href="#stats"]').parent().addClass('active');
-//        }
     });
 });

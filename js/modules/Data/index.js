@@ -2,9 +2,9 @@ App.module('Data', function (Data) {
     Data.addInitializer(function (options) {
         // Data is passed in from the initialisation function
         Data.mps = new Data.MPs((options && options.data && options.data.mps) || []);
-        // We don't need a model for the totals or stats
+        // We don't need a model for the totals
         Data.averages = (options && options.data && options.data.averages) || [];
-        Data.stats = (options && options.data && options.data.stats) || [];
+        Data.stats = new Data.Stats((options && options.data && options.data.stats) || []);
     });
     Data.addFinalizer(function () {
         // Delete the data

@@ -8,7 +8,7 @@ App.module('Stats', function (Stats) {
         showStats: function () {
             this._ensureSubAppIsRunning();
             this.data = App.module('Data').stats;
-            this.view = new Stats.StatsView({data: this.data});
+            this.view = new Stats.StatsView({model: this.data});
             // Show in the body
             App.body.show(this.view);
         },
