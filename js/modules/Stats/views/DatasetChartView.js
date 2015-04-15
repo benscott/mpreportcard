@@ -21,12 +21,12 @@ App.module('Stats', function (Stats) {
             // http://jsfiddle.net/fierval/f4hna/
 
             var width = 960,
-            height = 500,
+            height = 400,
             padding = {
-                top: 5,
-                right: 5,
-                bottom: 5,
-                left: 5
+                top: 50,
+                right: 50,
+                bottom: 50,
+                left: 50
 
             }
 //            p = [5, 5, 10, 10]
@@ -38,78 +38,134 @@ App.module('Stats', function (Stats) {
 //
 //            y = d3.scale.linear().range([0, h - padding.bottom - padding.top]),
 //            z = d3.scale.ordinal().range(["lightpink", "darkgray", "lightblue"]),
-            parse = d3.time.format("%m/%Y").parse
+//            parse = d3.time.format("%m/%Y").parse
 //            format = d3.time.format("%b");
 //
 
-//
+
+
+
+
+
+
+
+
 //            var data = this.collection.get_stats(type)
 //
-            var crimea_raw = d3.select("#csvdata").text();
-            var crimea = d3.csv.parse(crimea_raw);
+//            var width = 960,
+//                height = 400
 //
-//            var causes = d3.layout.stack()(["wounds", "other", "disease"].map(function(cause) {
-//                return crimea.map(function(d) {
-//                    return {x: parse(d.date), y: +d[cause]};
+//            var y = d3.scale.linear().range([height, -1]);
+//
+//            // Create the chart
+//            var chart = d3.select(this.el).select('div')
+//                .append('svg')
+//                .attr('class', 'chart')
+//                .attr("width", width)
+//                .attr("height", height)
+//
+//            y.domain([0, d3.max(data, function(d){
+//                return d.value;
+//            })]);
+//
+////            tip = d3.tip().attr('class', 'd3-tip').html(function(d) { return d.value; });
+////            chart.call(tip)
+//
+//
+//
+////            var drag = d3.behavior.drag()
+////                .origin(function(d) { return d; })
+////                .on("dragstart", dragstarted)
+////                .on("drag", dragged)
+////                .on("dragend", dragended);
+//
+//            var barWidth = width / data.length;
+//
+//            var bar = chart.selectAll("g")
+//                .data(data)
+//                .enter().append("g")
+//                .attr("transform", function (d, i) {
+//                    return "translate(" + i * barWidth + ",0)";
 //                });
-//            }));
 //
-//            console.log(crimea);
-//
-//            data = []
-//
-//            _.each(crimea, function (obj) {
-//              data.push({x:  parse(obj.date), y: obj.disease})
-//            })
+//            bar.append("rect")
+//                .attr("y", function (d) {
+//                    return y(d.value);
+//                })
+//                .attr("height", function (d) {
+//                    return height - y(d.value);
+//                })
+//                .attr("width", barWidth)
+//                .style("fill", function (d) {
+//                    return colors[d.party]
+//                })
+//                .on('mouseover', tip.show)
+//                .on('mouseout', tip.hide)
+//                .on('click', function(){
+//                    console.log('click')
+//                })
 
-//            data = [
-//                {x: 'one', y: 1},
-//                {x: 'two', y: 2},
-//                {x: 'three', y: 3},
-//                {x: 'g', y: 4},
-//                {x: 'h', y: 5},
-//                {x: 'j', y: 6}
-//            ]
+//                function zoomed() {
+//
+//                    console.log('ZOOM');
+//                  bar.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+//                }
 
-            var svg = d3.select(this.el).append("svg:svg")
+
+            var data = this.collection.get_stats(type)
+
+            var svg = d3.select(this.el).append("svg")
             .attr("width", width)
             .attr("height", height)
-            .append("svg:g")
+//            .append("svg:g")
             .attr("transform", "translate(" + padding.left + "," + (height - padding.bottom) + ")");
 
-            var barWidth = width / data.length;
+//            var barWidth = width / data.length;
 
-            var y = d3.scale.linear().range([height, 0]);
+            var y = d3.scale.linear().range([height, -1]);
 
             y.domain([0, d3.max(data, function(d){
-                return d.y;
+                return d.value;
             })]);
 
-            x = d3.fisheye.ordinal().rangeRoundBands([0, width - padding.right - padding.left]).distortion(0.9),
-            x.domain(data.map(function(d) { return d.x; }));
+            x = d3.fisheye.ordinal().rangeRoundBands([0, width - 200]).distortion(5),
+            x.domain(data.map(function(d) { return d.key; }));
+
+            var barWidth = width / data.length;
 
             // Add a group for each cause.
             var bars = svg.selectAll("g.bars")
             .data(data)
             .enter().append("svg:g")
             .attr("class", "bars")
-            .style("fill", function(d, i) {
-                    if(i % 2){
-                        return 'pink'
-                    }else{
-                        return 'yellow'
-                    }
-//                    return 'pink'
-                })
+                .attr("transform", function (d, i) {
+                    return "translate(" + i * barWidth + ",0)";
+                });
+
 
             // Add a rect for each date.
             var rect = bars.append("svg:rect")
-            .attr("x", function(d) { return x(d.x); })
-            .attr("y", function(d) { return y(d.y); })
-            .attr("height", function(d) { return height - y(d.y); })
-            .attr("width", function(d) {
-                    return x.rangeBand(d.x);
+            .attr("x", function(d) { return x(d.key); })
+            .attr("y", function(d) { return y(d.value); })
+            .attr("height", function(d) { return height - y(d.value); })
+            .attr("width", function(d){
+                    return x.rangeBand(d.key)
                 })
+//            .attr("width", barWidth)
+            .style("fill", function(d) {
+                    return colors[d.party]
+                })
+//
+
+
+
+
+
+
+
+
+
+
 
 //            var bar = svg.selectAll("g")
 //                .data(data)
@@ -131,6 +187,10 @@ App.module('Stats', function (Stats) {
 //                    return 'red'
 //                })
 
+
+
+//            HERE
+
             //respond to the mouse and distort where necessary
             svg.on("mousemove", function() {
                 var mouse = d3.mouse(this);
@@ -139,8 +199,8 @@ App.module('Stats', function (Stats) {
                 x.focus(mouse[0]);
                 //redraw the bars
                 rect
-                .attr("x", function(d) { return x(d.x); })
-                .attr("width", function(d) {return x.rangeBand(d.x);});
+                .attr("x", function(d) { return x(d.key); })
+                .attr("width", function(d) {return x.rangeBand(d.key) * 5;});
 
                 //redraw the text
 //                label.attr("x", function(d) { return x(d) + x.rangeBand(d.x) / 2; });
