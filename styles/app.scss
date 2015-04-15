@@ -435,7 +435,7 @@ footer {
 
 .chart rect {
     stroke: white;
-    width: 2;
+//    width: 2;
 }
 
 
@@ -525,4 +525,13 @@ path.area {
   margin: -4px 0 0 -1px;
   top: 50%;
   left: 100%;
+}
+
+
+
+// ZOOM
+
+.overlay {
+  fill: none;
+  pointer-events: all;
 }

@@ -7,8 +7,26 @@ App.module('Stats', function (Stats) {
         },
         showStats: function () {
             this._ensureSubAppIsRunning();
-            this.data = App.module('Data').stats;
-            this.view = new Stats.StatsView({model: this.data});
+            this.data = {
+                stats: App.module('Data').stats,
+                mps: App.module('Data').mps
+            }
+
+            // Get layout view
+            this.view = new Stats.StatsView();
+
+//            this.total.show(new App.Stats.BarChartView({
+//                model: this.data.stats
+//            }));
+
+            _this = this
+
+            this.view.on("show", function () {
+                _this.view.dataset.show(new App.Stats.DatasetChartView({
+                    collection: _this.data.mps
+                }));
+            });
+
             // Show in the body
             App.body.show(this.view);
         },

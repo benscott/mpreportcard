@@ -249,8 +249,7 @@ footer {
   margin: 5px; }
 
 .chart rect {
-  stroke: white;
-  width: 2; }
+  stroke: white; }
 
 path.line {
   fill: none;
@@ -325,5 +324,9 @@ path.area {
   margin: -4px 0 0 -1px;
   top: 50%;
   left: 100%; }
+
+.overlay {
+  fill: none;
+  pointer-events: all; }
 
 /*# sourceMappingURL=app.css.map */
