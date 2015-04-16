@@ -45,7 +45,10 @@ App.module('MP', function (MP) {
                     return 'Has spoken ' + this.speeches + ' times in ' + this.debates + ' debates. On average, an MP spoke in ' + App.module('Data').averages['debates'] + ' debates.'
                 },
                 interests_description: function () {
-                    return 'Financial interests declared by ' + this.name + '. The MP average was &pound' + App.module('Data').averages['interests'].toLocaleString() + '.'
+                  
+                    // Create link to google doc to view the interests
+                    var googleDocLink = 'https://spreadsheets.google.com/tq?tqx=out:html&tq=SELECT+A,+B,+C,+D,+F,+G,+H,+I,+J+WHERE+A=' + this.id + '&key=1j3IX-yGOZj1SUNMEs817v9egBPu5YJyVek26t3mGJqQ'
+                    return 'Financial interests declared by ' + this.name + '. The MP average was &pound' + App.module('Data').averages['interests'].toLocaleString() + '. <a class="external" target="_blank" href="' + googleDocLink + '">View interests.</a>'
                 },
                 expenses_description: function () {
                     return this.name + ' declared expenses totalling &pound' + this.expenses.toLocaleString() + ' in this parliament. The MP average was &pound' + App.module('Data').averages['expenses'].toLocaleString() + '.'

@@ -10,40 +10,37 @@
 <body>
 
 <!-- Navigation -->
-<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-xs-12 col-sm-8">-->
-                <!--<div class="navbar-header">-->
-                    <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">-->
-                        <!--<span class="sr-only">Toggle navigation</span>-->
-                        <!--<span class="icon-bar"></span>-->
-                        <!--<span class="icon-bar"></span>-->
-                        <!--<span class="icon-bar"></span>-->
-                    <!--</button>-->
-                    <!--<a class="navbar-brand" href="#"><span>MP</span> Report Card</a>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
-                <!--<div class="collapse navbar-collapse" id="navbar-collapse">-->
-                    <!--<ul class="nav navbar-nav">-->
-                        <!--<li><a href="#mp">MPs</a></li>-->
-                        <!--<li><a href="#stats">Stats</a></li>-->
-                        <!--<li><a href="#about">About</a></li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
-            <!--</div>-->
-            <!--&lt;!&ndash; On >medium this takes up 4 cols, but is hidden for small &ndash;&gt;-->
-            <!--<div class="col-sm-4 hidden-xs pull-right" data-region="search"></div>-->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><span>MP</span> Report Card</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#mp">MPs</a></li>
+                        <li><a href="#parties">Parties</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- On >medium this takes up 4 cols, but is hidden for small -->
+            <div class="col-sm-4 hidden-xs pull-right" data-region="search"></div>
 
-        <!--</div>-->
-        <!--&lt;!&ndash; /.row &ndash;&gt;-->
-    <!--</div>-->
-    <!--&lt;!&ndash; /.container &ndash;&gt;-->
-<!--</nav>-->
-
-
-<img src="/img/header.png">
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</nav>
 
 <section id="appBody" data-region="body"></section>
 
@@ -269,7 +266,7 @@
                         <th class="col-xs-1" data-sort="int">Answers</th>
                         <th class="col-xs-1" data-sort="float">Votes</th>
                         <th class="col-xs-1" data-sort="float">Replies</th>
-                        <th class="col-xs-1" data-sort="float">Rebellions</th>
+                        <th class="col-xs-1" data-sort="float">Rebels</th>
                         <th class="col-xs-1" data-sort="float">EDMS</th>
                     </tr>
                     </thead>
@@ -297,79 +294,71 @@
     Sorry, no MPs found
 </script>
 
-<script type="text/template" id="stats">
+<!-- Parties Page -->
+<script type="text/template" id="parties">
+
+    <div class="header header-parties">
+        <div class="container">
+            <div class="row">
+
+                <form>
+
+                    <div class="col-md-2">
+
+                    </div>
+
+                    <div class="col-xs-4">
+
+                        <select class="form-control" id="data-source">
+                            <option value="financial_interests" selected="selected">Financial interests</option>
+                            <option value="expenses">Expenses</option>
+                            <option value="debates">Debates</option>
+                            <option value="votes">Votes</option>
+                            <option value="answers">Answers</option>
+                            <option value="edms">Early Day Motions</option>
+                            <option value="rebel_votes">Rebel votes</option>
+                            <option value="replies">Replies to letters</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-xs-4 col-md-6">
+
+                        <fieldset id="average-or-total">
+                            <label for="type-total" class="radio-inline">
+                                <input type="radio" name="type" id="type-total" checked="checked" value="total">Party total
+                            </label>
+
+                            <label for="type-average" class="radio-inline">
+                                <input type="radio" name="type" id="type-average" value="average">Average per MP
+                            </label>
+                        </fieldset>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
 
     <div class="container">
+
+
         <div class="row">
 
-            <!--<div class="col-sm-12">-->
-                <!--&lt;!&ndash;<h2>Total</h2>&ndash;&gt;-->
-                <!--<div id="stats-total"></div>-->
-            <!--</div>-->
-            <div class="col-sm-12">
-                <h2>DATASET</h2>
-                <!--<h2>Total</h2>-->
-                <div id="stats-dataset">STATS DATASET</div>
+            <div class="col-xs-12">
+                <h2 id="graph-title">Total financial interests per party.</h2>
+
+                <div class="graph"></div>
             </div>
+
 
         </div>
 
     </div>
 
-</script>
-
-<script type="text/template" id="stats-total-graph">
-    <form>
-        <select>
-            <option value="financial_interests" selected="selected">Financial interests</option>
-            <option value="expenses">Expenses</option>
-            <option value="debates">Debates</option>
-            <option value="votes">Votes</option>
-            <option value="answers">Answers</option>
-            <option value="edms">Early Day Motions</option>
-            <option value="rebel_votes">Rebel votes</option>
-            <option value="replies">Replies to letters</option>
-        </select>
-        <fieldset id="average-or-total">
-            <input type="radio" name="type" id="type-total" checked="checked" value="total"><label for="type-total">Total</label>
-            <input type="radio" name="type" id="type-average" value="average"><label for="type-average">Average per MP</label>
-        </fieldset>
-    </form>
-    <div class="graph"></div>
-</script>
-
-<pre id="csvdata">
-date,wounds,other,disease
-5/1854,0,95,105
-6/1854,0,40,95
-7/1854,0,140,520
-8/1854,20,150,800
-9/1854,220,230,740
-10/1854,305,310,600
-11/1854,480,290,820
-12/1854,295,310,1100
-1/1855,230,460,1440
-2/1855,180,520,1270
-3/1855,155,350,935
-4/1855,195,195,560
-5/1855,180,155,550
-6/1855,330,130,650
-7/1855,260,130,430
-8/1855,290,110,490
-9/1855,355,100,290
-10/1855,135,95,245
-11/1855,100,140,325
-12/1855,40,120,215
-1/1856,0,160,160
-2/1856,0,100,100
-3/1856,0,125,90
-</pre>
-
-<script type="text/template" id="stats-dataset-graph">
-
-
-
-    <div>NEW DATASET</div>
 </script>
 
 
@@ -395,7 +384,7 @@ date,wounds,other,disease
 <!-- Data -->
 <script src="js/modules/Data/models/MP.js"></script>
 <script src="js/modules/Data/models/MPs.js"></script>
-<script src="js/modules/Data/models/Stats.js"></script>
+<script src="js/modules/Data/models/Parties.js"></script>
 <script src="js/modules/Data/index.js"></script>
 
 <!-- Modules -->
@@ -416,18 +405,15 @@ date,wounds,other,disease
 <script src="js/modules/MP/Router.js"></script>
 <script src="js/modules/MP/index.js"></script>
 
-<script src="js/modules/Stats/views/DatasetChartView.js"></script>
-<script src="js/modules/Stats/views/BarChartView.js"></script>
-<script src="js/modules/Stats/views/StatsView.js"></script>
-<script src="js/modules/Stats/Controller.js"></script>
-<script src="js/modules/Stats/Router.js"></script>
-<script src="js/modules/Stats/index.js"></script>
+<script src="js/modules/Parties/views/PartiesView.js"></script>
+<script src="js/modules/Parties/Controller.js"></script>
+<script src="js/modules/Parties/Router.js"></script>
+<script src="js/modules/Parties/index.js"></script>
 
 <script src="js/modules/Search/views/SearchView.js"></script>
 
 <!-- Source data -->
 <script src="src/data.js"></script>
-<script src="src/stats.js"></script>
 
 <!-- Init -->
 <script src="js/initialize.js"></script>

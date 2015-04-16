@@ -1,6 +1,7 @@
 $dark-grey: #1E222C;
 $grey: #444;
 $light-grey: #F6F6F6;
+$mid-grey: #878788;
 $black: #000;
 $green: #7A7F51;
 
@@ -23,18 +24,29 @@ h1, h2, h3 {
   text-transform: uppercase;
 }
 
+a.external:after {
+  font-family: FontAwesome;
+  font-size: 10px;
+  position: relative;
+  content: "\f08e";
+  color: $mid-grey;
+  top: -3px;
+}
+
+
+
 #appBody {
   color: $dark-grey;
   min-height: 200px;
 
-  .container {
+  .container:first-of-type {
     margin-top: 80px;
   }
 
 }
 
 .text-muted {
-  color: $green;
+  color: $mid-grey;
 }
 
 .navbar {
@@ -209,10 +221,17 @@ footer {
         font-weight: normal;
         text-decoration: inherit;
         font-size: 16px;
-        margin-right: 5px;
+        margin-right: 6px;
         position: relative;
+        content: "\f0dc";
+        color: lighten($mid-grey, 40);
+        top: 1px;
       }
 
+    }
+    th.sorting-asc:before,
+    th.sorting-desc:before{
+      color: #000;
     }
     th.sorting-asc:before {
       content: "\f0dd";
@@ -416,60 +435,61 @@ footer {
 
 }
 
-.stats .box{
-//  background: $light-grey;
-  text-align: center;
-  padding-top: 30px;
+.parties {
+
+  .header {
+    background: $light-grey;
+    padding-bottom: 20px;
+
+    form {
+
+      padding-top: 20px;
+
+      select {
+        margin-top: 3px;
+        font-size: 18px;
+      }
+
+      fieldset {
+        margin-top: 6px;
+
+        label {
+          font-size: 18px;
+        }
+
+      }
+
+      .disabled label {
+        color: lighten($mid-grey, 20);
+      }
+
+    }
+  }
 
   h2{
-    margin-top: 0;
+    margin: 20px 0 25px 0;
+    text-align: center;
+  }
+
+  .graph {
+
+    margin-top: 10px;
+    text-align: center;
+
+    rect {
+      stroke: white;
+    }
+
+    .x-axis line {
+      stroke: darken($light-grey, 5);
+    }
+
+    .x-axis path {
+      display: none;
+    }
   }
 
 }
-
-
-.chart {
-
-  margin: 5px;
-}
-
-.chart rect {
-    stroke: white;
-//    width: 2;
-}
-
-
-path.line {
-  fill: none;
-  stroke: #666;
-  stroke-width: 1.5px;
-}
-
-path.area {
-  fill: #e7e7e7;
-}
-
-.axis {
-  shape-rendering: crispEdges;
-}
-
-.x-axis line {
-  stroke: darken($light-grey, 5);
-}
-
-.x-axis .minor {
-  stroke-opacity: .5;
-}
-
-.x-axis path {
-  display: none;
-}
-
-.y.axis line, .y.axis path {
-  fill: none;
-  stroke: #000;
-}
-
 
 .d3-tip {
   line-height: 1;
@@ -527,11 +547,3 @@ path.area {
   left: 100%;
 }
 
-
-
-// ZOOM
-
-.overlay {
-  fill: none;
-  pointer-events: all;
-}

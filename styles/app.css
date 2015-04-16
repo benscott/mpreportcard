@@ -5,14 +5,22 @@ html, body {
 h1, h2, h3 {
   text-transform: uppercase; }
 
+a.external:after {
+  font-family: FontAwesome;
+  font-size: 10px;
+  position: relative;
+  content: "\f08e";
+  color: #878788;
+  top: -3px; }
+
 #appBody {
   color: #1E222C;
   min-height: 200px; }
-  #appBody .container {
+  #appBody .container:first-of-type {
     margin-top: 80px; }
 
 .text-muted {
-  color: #7A7F51; }
+  color: #878788; }
 
 .navbar {
   border-radius: 0 !important;
@@ -126,8 +134,14 @@ footer {
       font-weight: normal;
       text-decoration: inherit;
       font-size: 16px;
-      margin-right: 5px;
-      position: relative; }
+      margin-right: 6px;
+      position: relative;
+      content: "\f0dc";
+      color: #ededee;
+      top: 1px; }
+  .mp-list table th.sorting-asc:before,
+  .mp-list table th.sorting-desc:before {
+    color: #000; }
   .mp-list table th.sorting-asc:before {
     content: "\f0dd";
     top: -2px; }
@@ -239,41 +253,32 @@ footer {
     .mp table tr.inverse .above-average {
       background: #F86C00; }
 
-.stats .box {
-  text-align: center;
-  padding-top: 30px; }
-  .stats .box h2 {
-    margin-top: 0; }
-
-.chart {
-  margin: 5px; }
-
-.chart rect {
-  stroke: white; }
-
-path.line {
-  fill: none;
-  stroke: #666;
-  stroke-width: 1.5px; }
-
-path.area {
-  fill: #e7e7e7; }
-
-.axis {
-  shape-rendering: crispEdges; }
-
-.x-axis line {
-  stroke: #e9e9e9; }
-
-.x-axis .minor {
-  stroke-opacity: .5; }
-
-.x-axis path {
-  display: none; }
-
-.y.axis line, .y.axis path {
-  fill: none;
-  stroke: #000; }
+.parties .header {
+  background: #F6F6F6;
+  padding-bottom: 20px; }
+  .parties .header form {
+    padding-top: 20px; }
+    .parties .header form select {
+      margin-top: 3px;
+      font-size: 18px; }
+    .parties .header form fieldset {
+      margin-top: 6px; }
+      .parties .header form fieldset label {
+        font-size: 18px; }
+    .parties .header form .disabled label {
+      color: #bababb; }
+.parties h2 {
+  margin: 20px 0 25px 0;
+  text-align: center; }
+.parties .graph {
+  margin-top: 10px;
+  text-align: center; }
+  .parties .graph rect {
+    stroke: white; }
+  .parties .graph .x-axis line {
+    stroke: #e9e9e9; }
+  .parties .graph .x-axis path {
+    display: none; }
 
 .d3-tip {
   line-height: 1;
@@ -324,9 +329,5 @@ path.area {
   margin: -4px 0 0 -1px;
   top: 50%;
   left: 100%; }
-
-.overlay {
-  fill: none;
-  pointer-events: all; }
 
 /*# sourceMappingURL=app.css.map */
