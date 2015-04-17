@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Data Portal</title>
+    <title>MP Report Card</title>
     <link rel="stylesheet" href="/styles/index.css">
 
 </head>
@@ -21,13 +21,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><span>MP</span> Report Card</a>
+                    <a class="navbar-brand" href="#"><span>MP</span> Report Card 2015</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#mp">MPs</a></li>
-                        <li><a href="#parties">Parties</a></li>
+                        <li><a href="#stats">Stats</a></li>
                         <li><a href="#about">About</a></li>
                     </ul>
                 </div>
@@ -42,12 +42,20 @@
     <!-- /.container -->
 </nav>
 
+<!-- Main app body -->
+
 <section id="appBody" data-region="body"></section>
 
 <footer data-region="footer">
+
     <div class="container">
-        <p class="col-xs-12 text-muted"></p>
-    </div>
+        <div class="row">
+            <div class="sparkd"><a title="SPARKD: Open Data Innovation" href="http://sparkd.com">Built by <i class="fa fa-fire"></i> SPARKD</a></div>
+
+            </div>
+
+        </div>
+
 </footer>
 
 <!-- Templates -->
@@ -55,42 +63,44 @@
 <script type="text/template" id="index-page">
 
     <div class="full">
-        <div class="container">
-            <h1 class="text-center">How have your MPs been doing?</h1>
 
-            <div id="home-search"></div>
-        </div>
+        <section>
+            <div class="strapline">
+                <h1>How has your MP been doing?</h1>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div id="home-search">
+                    <!-- home-search form tpl -->
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h2>&pound;182 million<small>Expenses</small></h2>
+                    </div>
+                    <div class="col-sm-3 interests">
+                        <h2>&pound;42 million<small>Financial interests</small></h2>
+                    </div>
+
+                    <div class="col-sm-3 debates">
+                        <h2>181,&thinsp;642<small>Debates</small></h2>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <h2>325,&thinsp;841<small>Speeches</small></h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="sparkd"><a title="SPARKD: Open Data Innovation" href="http://sparkd.com">Built by <i class="fa fa-fire"></i> SPARKD</a></div>
+
     </div>
 
-    <div class="container content">
-        <div class="row">
-            <h2 class="text-center">During the 2010-2015 parliament our MPs:</h2>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 blocks">
-                <img width="75" height="90" src="/img/portcullis.gif" alt="Crowned portcullis">
-
-                <h3>Earned an extra &pound;36 Million</h3>
-
-                <p class="text-muted">Our MPs declared financial interests of £36 million.</p>
-            </div>
-            <div class="col-sm-4 blocks">
-                <img width="75" height="90" src="/img/portcullis.gif" alt="Crowned portcullis">
-
-                <h3>Earned an extra &pound;36 Million</h3>
-
-                <p class="text-muted">Our MPs declared financial interests of £36 million.</p>
-            </div>
-            <div class="col-sm-4 blocks">
-                <img width="75" height="90" src="/img/portcullis.gif" alt="Crowned portcullis">
-
-                <h3>Earned an extra &pound;36 Million</h3>
-
-                <p class="text-muted">Divisions, speeches, early day motions and Q&amp;As.</p>
-            </div>
-
-        </div>
-    </div>
 </script>
 
 <script type="text/template" id="mp">
@@ -170,7 +180,9 @@
                         <p><%= replies_description() %></p>
                     </th>
                     <td class="col-xs-2">
-                        <h3><%= replies_percentage %>&percnt;</h3>
+                        <% if (data_quality_indicator) { %>
+                            <h3><%= replies_percentage %>&percnt;</h3>
+                        <% } %>
                     </td>
                     <td class="col-xs-1">
                         <%= getStatus('replies_percentage') %>
@@ -295,9 +307,9 @@
 </script>
 
 <!-- Parties Page -->
-<script type="text/template" id="parties">
+<script type="text/template" id="stats">
 
-    <div class="header header-parties">
+    <div class="header">
         <div class="container">
             <div class="row">
 
@@ -384,7 +396,7 @@
 <!-- Data -->
 <script src="js/modules/Data/models/MP.js"></script>
 <script src="js/modules/Data/models/MPs.js"></script>
-<script src="js/modules/Data/models/Parties.js"></script>
+<script src="js/modules/Data/models/Stats.js"></script>
 <script src="js/modules/Data/index.js"></script>
 
 <!-- Modules -->
@@ -405,10 +417,10 @@
 <script src="js/modules/MP/Router.js"></script>
 <script src="js/modules/MP/index.js"></script>
 
-<script src="js/modules/Parties/views/PartiesView.js"></script>
-<script src="js/modules/Parties/Controller.js"></script>
-<script src="js/modules/Parties/Router.js"></script>
-<script src="js/modules/Parties/index.js"></script>
+<script src="js/modules/Stats/views/StatsView.js"></script>
+<script src="js/modules/Stats/Controller.js"></script>
+<script src="js/modules/Stats/Router.js"></script>
+<script src="js/modules/Stats/index.js"></script>
 
 <script src="js/modules/Search/views/SearchView.js"></script>
 

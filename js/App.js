@@ -4,7 +4,7 @@ var App = (function () {
 
     application.addRegions({
         search: '[data-region=search]',
-        body: '[data-region=body]'
+        body: '[data-region=body]',
     });
 
     application.on('start', function () {

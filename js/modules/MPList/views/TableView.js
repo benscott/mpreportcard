@@ -7,8 +7,8 @@ App.module('MPList', function (MPList) {
         emptyView: MPList.EmptyView,
         onRender: function () {
             // Make mp page item active
-            $('#navbar li').removeClass('active');
-            $('#navbar li a[href="#mp"]').parent().addClass('active');
+            $('#navbar-collapse li').removeClass('active');
+            $('#navbar-collapse li a[href="#mp"]').parent().addClass('active');
             // Add table sort
             this.$('table').stupidtable();
 //            TODO: Does this keep the sort order?

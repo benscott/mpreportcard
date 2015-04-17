@@ -33,7 +33,7 @@ App.module('MP', function (MP) {
                 getStatus: function (key) {
 
 
-                    if ((key == 'answers' || key == 'edms') && this.govt){
+                    if (((key == 'answers' || key == 'edms') && this.govt) || (key == 'replies_percentage' && !this.data_quality_indicator)){
                         return '<div class="traffic-light na"></div>'
                     }
 
@@ -45,10 +45,14 @@ App.module('MP', function (MP) {
                     return 'Has spoken ' + this.speeches + ' times in ' + this.debates + ' debates. On average, an MP spoke in ' + App.module('Data').averages['debates'] + ' debates.'
                 },
                 interests_description: function () {
-                  
+
+                    var desc = 'Financial interests declared by ' + this.name + '. The MP average was &pound' + App.module('Data').averages['interests'].toLocaleString() + '.'
                     // Create link to google doc to view the interests
-                    var googleDocLink = 'https://spreadsheets.google.com/tq?tqx=out:html&tq=SELECT+A,+B,+C,+D,+F,+G,+H,+I,+J+WHERE+A=' + this.id + '&key=1j3IX-yGOZj1SUNMEs817v9egBPu5YJyVek26t3mGJqQ'
-                    return 'Financial interests declared by ' + this.name + '. The MP average was &pound' + App.module('Data').averages['interests'].toLocaleString() + '. <a class="external" target="_blank" href="' + googleDocLink + '">View interests.</a>'
+                    if (this.interests > 0){
+                        desc += ' <a class="external" target="_blank" href="https://spreadsheets.google.com/tq?tqx=out:html&tq=SELECT+A,+B,+C,+D,+F,+G,+H,+I,+J+WHERE+A=' + this.id + '&key=1j3IX-yGOZj1SUNMEs817v9egBPu5YJyVek26t3mGJqQ">View interests.</a>'
+                    }
+                    return desc
+
                 },
                 expenses_description: function () {
                     return this.name + ' declared expenses totalling &pound' + this.expenses.toLocaleString() + ' in this parliament. The MP average was &pound' + App.module('Data').averages['expenses'].toLocaleString() + '.'
@@ -64,7 +68,15 @@ App.module('MP', function (MP) {
                     return 'Attended ' + this.votes_attended + ' out of '  + this.votes_possible + ' votes.  The average attendance was ' + App.module('Data').averages['votes_percentage'] + '&percnt;.'
                 },
                 replies_description: function () {
-                    return  'Replied to ' + this.replies + ' out of '  + this.surveys + ' letters sent via WriteToThem in 2013. The average reply rate was ' + App.module('Data').averages['replies_percentage'] + '&percnt;.'
+
+                    if(!this.data_quality_indicator){
+                        return  'WriteToThem had no information on this MP.'
+                    }else{
+                        return  'Replied to ' + this.replies + ' out of '  + this.surveys + ' letters sent via WriteToThem in 2013. The average reply rate was ' + App.module('Data').averages['replies_percentage'] + '&percnt;.'
+                    }
+
+                    console.log(this);
+
                 },
                 rebel_votes_description: function () {
                     return  'Voted against their party in ' + this.rebel_votes + ' votes. The MP average was ' + App.module('Data').averages['rebel_votes'] + '.'
@@ -73,12 +85,9 @@ App.module('MP', function (MP) {
                     if (this.govt) {
                        return 'Government ministers do not submit Early Day Motions.'
                     }else{
-                        return  'Submitted ' + this.edms + ' Early Day Motions. The MP average was ' + App.module('Data').averages['edms'] + '.'
+                        return  'Signed ' + this.edms + ' Early Day Motions. The MP average was ' + App.module('Data').averages['edms'] + '.'
                     }
                 }
-
-
-
             };
         },
         getTemplate: function () {
@@ -91,8 +100,8 @@ App.module('MP', function (MP) {
         },
         onRender: function () {
             // Make mp page item active
-            $('#navbar li').removeClass('active');
-            $('#navbar li a[href="#mp"]').parent().addClass('active');
+            $('#navbar-collapse li').removeClass('active');
+            $('#navbar-collapse li a[href="#mp"]').parent().addClass('active');
         }
     });
 });

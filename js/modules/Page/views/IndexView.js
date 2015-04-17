@@ -9,9 +9,13 @@ App.module('Page', function (Page) {
             this.search.show(new App.Search.SearchView({placeholder: 'Enter MP\'s name, constituency or postcode'}))
         },
         onRender: function () {
-            // Make mp page item active
-            $('#navbar li').removeClass('active');
-            $('#navbar li a[href="#"]').parent().addClass('active');
+            // Make no page active
+            $('#navbar-collapse li').removeClass('active');
+            $('body').addClass('no-footer');
+        },
+
+        remove: function () {
+            $('body').removeClass('no-footer');
         }
     });
 });
