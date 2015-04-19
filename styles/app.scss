@@ -1,4 +1,4 @@
-$dark-grey: #1E222C;
+$dark-grey-bg: #222;
 
 // Text colors
 $dark-grey-text: #444;
@@ -6,16 +6,23 @@ $grey-text: #9d9d9d;
 $light-grey-text: lighten($grey-text, 20);
 
 $light-grey: #F6F6F6;
-//$mid-grey: #878788;
 $black: #000;
 
-$green: #7A7F51;
 
+// Party colours
 $labour-color: #E00600;
 $cons-color: #0061C8;
 $lib-color: #FEB000;
 $ukip-color: #5B0066;
 $sdlp-color: #0C5C40;
+$green-color: #78b82a;
+$dup-color: #CA5438;
+$alliance-color: #EFCE00;
+$cymru-color: #31751A;
+$snp-color: #0E005E;
+$sinn-fein-color: #087E30;
+$ind-color: #888888;
+$respect-color: #366C15;
 
 $traffic-light-green: #6FC402;
 $traffic-light-amber: #F3CA00;
@@ -40,7 +47,7 @@ a.external:after {
 }
 
 #appBody {
-  color: $dark-grey;
+  color: $dark-grey-text;
   min-height: 200px;
 }
 
@@ -52,6 +59,7 @@ a.external:after {
   border-radius: 0 !important;
   margin-bottom: 0;
   border-bottom: 0;
+  background: $dark-grey-bg;
 
   a, a:focus, .active a {
     color: $grey-text !important;
@@ -116,7 +124,8 @@ a.external:after {
   color: #fff;
 }
 
-.autocomplete-suggestion {
+.autocomplete-suggestion,
+.autocomplete-no-suggestion{
   padding: 3px 8px;
   background-color: rgba(0, 0, 0, 0.7);
   border-bottom: 1px solid rgba(0, 0, 0, 0.75);
@@ -126,7 +135,7 @@ a.external:after {
 
 .autocomplete-selected {
   background: #fff;
-  color: $dark-grey;
+  color: $dark-grey-bg;
 }
 
 #appBody, div.home {
@@ -154,12 +163,18 @@ a.external:after {
       position: relative;
       z-index: 100;
 
+        &:first-of-type {
+          height: 32%;
+        }
+
+      .container{
+        padding:0;
+      }
+
       .strapline {
         width: 100%;
-        &:first-of-type {
           position: absolute;
           bottom: 0;
-        }
       }
 
       h1, h2, h2 small {
@@ -169,7 +184,7 @@ a.external:after {
       }
 
       h1 {
-        font-size: 42px;
+        font-size: 50px;
       }
 
       h2 {
@@ -188,7 +203,7 @@ a.external:after {
       #home-search {
         position: absolute;
         top: 50%;
-        margin-top: -25px;
+        margin-top: -22px;
         width: inherit;
 
         form {
@@ -198,7 +213,7 @@ a.external:after {
 
           input {
             border: 1px solid #fff;
-            background-color: rgba(0, 0, 0, 0.2);
+            background: none;
             font-size: 1.8em;
             line-height: 60px;
             height: 60px;
@@ -278,22 +293,6 @@ a.external:after {
         vertical-align: middle !important;
       }
     }
-
-    .fa-circle {
-      font-size: 12px;
-      margin-right: 10px;
-    }
-
-    .labour i.fa-circle {
-      color: $labour-color;
-    }
-    .conservative i.fa-circle {
-      color: $cons-color
-    }
-    .liberal-democrat i.fa-circle {
-      color: $lib-color;
-    }
-
   }
 
   // MP Page
@@ -362,12 +361,48 @@ a.external:after {
       background-color: $cons-color;
     }
 
-    .header-liberal-democrat {
+    .header-lib-dem {
       background-color: $lib-color;
     }
 
-    .header-uk-independence-party {
+    .header-ukip {
       background-color: $ukip-color;
+    }
+
+    .header-alliance {
+      background-color: $alliance-color;
+    }
+
+    .header-dup {
+      background-color: $dup-color;
+    }
+
+    .header-green {
+      background-color: $green-color;
+    }
+
+    .header-plaid-cymru {
+      background-color: $cymru-color;
+    }
+
+    .header-respect {
+      background-color: $respect-color;
+    }
+
+    .header-snp {
+      background-color: $snp-color;
+    }
+
+    .header-sinn-fein {
+      background-color: $sinn-fein-color;
+    }
+
+    .header-sdlp {
+      background-color: $sdlp-color;
+    }
+
+    .header-speaker, .header-independent {
+      background-color: $ind-color;
     }
 
     table {
@@ -584,12 +619,21 @@ a.external:after {
     display: none;
   }
 
+  // About page
+  .about{
+    .container{
+      margin-top: 80px;
+    }
+  }
+
   footer {
     margin-top: 20px;
-    background-color: $dark-grey;
+    background-color: $dark-grey-bg;
 
     .sparkd{
       padding: 15px 0;
     }
 
   }
+
+

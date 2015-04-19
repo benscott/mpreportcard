@@ -9,10 +9,10 @@ App.module('MPList', function (MPList) {
             // Make mp page item active
             $('#navbar-collapse li').removeClass('active');
             $('#navbar-collapse li a[href="#mp"]').parent().addClass('active');
+            window.scrollTo(0,0);
             // Add table sort
             this.$('table').stupidtable();
-//            TODO: Does this keep the sort order?
-//            this.$('table').find("th.mp-name").click();
+            this.$('table').find("th.mp-name").click();
         }
     });
 });

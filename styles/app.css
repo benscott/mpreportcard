@@ -14,7 +14,7 @@ a.external:after {
   top: -3px; }
 
 #appBody {
-  color: #1E222C;
+  color: #444;
   min-height: 200px; }
 
 .text-muted {
@@ -23,7 +23,8 @@ a.external:after {
 .navbar {
   border-radius: 0 !important;
   margin-bottom: 0;
-  border-bottom: 0; }
+  border-bottom: 0;
+  background: #222; }
   .navbar a, .navbar a:focus, .navbar .active a {
     color: #9d9d9d !important; }
   .navbar .navbar-brand {
@@ -61,7 +62,8 @@ a.external:after {
 .autocomplete-suggestions {
   color: #fff; }
 
-.autocomplete-suggestion {
+.autocomplete-suggestion,
+.autocomplete-no-suggestion {
   padding: 3px 8px;
   background-color: rgba(0, 0, 0, 0.7);
   border-bottom: 1px solid rgba(0, 0, 0, 0.75);
@@ -72,7 +74,7 @@ a.external:after {
 
 .autocomplete-selected {
   background: #fff;
-  color: #1E222C; }
+  color: #222; }
 
 #appBody, div.home {
   display: inline; }
@@ -95,17 +97,20 @@ a.external:after {
     height: 33%;
     position: relative;
     z-index: 100; }
+    .home .full section:first-of-type {
+      height: 32%; }
+    .home .full section .container {
+      padding: 0; }
     .home .full section .strapline {
-      width: 100%; }
-      .home .full section .strapline:first-of-type {
-        position: absolute;
-        bottom: 0; }
+      width: 100%;
+      position: absolute;
+      bottom: 0; }
     .home .full section h1, .home .full section h2, .home .full section h2 small {
       text-align: center;
       color: #fff;
       font-weight: normal; }
     .home .full section h1 {
-      font-size: 42px; }
+      font-size: 50px; }
     .home .full section h2 {
       margin-top: 50px;
       font-size: 30px; }
@@ -117,7 +122,7 @@ a.external:after {
     .home .full section #home-search {
       position: absolute;
       top: 50%;
-      margin-top: -25px;
+      margin-top: -22px;
       width: inherit; }
       .home .full section #home-search form {
         width: 60%;
@@ -125,7 +130,7 @@ a.external:after {
         min-width: 450px; }
         .home .full section #home-search form input {
           border: 1px solid #fff;
-          background-color: rgba(0, 0, 0, 0.2);
+          background: none;
           font-size: 1.8em;
           line-height: 60px;
           height: 60px; }
@@ -175,15 +180,6 @@ a.external:after {
   .mp-list table td {
     border: none !important;
     vertical-align: middle !important; }
-  .mp-list .fa-circle {
-    font-size: 12px;
-    margin-right: 10px; }
-  .mp-list .labour i.fa-circle {
-    color: #E00600; }
-  .mp-list .conservative i.fa-circle {
-    color: #0061C8; }
-  .mp-list .liberal-democrat i.fa-circle {
-    color: #FEB000; }
 
 .mp {
   margin-top: 80px; }
@@ -224,10 +220,28 @@ a.external:after {
     background-color: #E00600; }
   .mp .header-conservative {
     background-color: #0061C8; }
-  .mp .header-liberal-democrat {
+  .mp .header-lib-dem {
     background-color: #FEB000; }
-  .mp .header-uk-independence-party {
+  .mp .header-ukip {
     background-color: #5B0066; }
+  .mp .header-alliance {
+    background-color: #EFCE00; }
+  .mp .header-dup {
+    background-color: #CA5438; }
+  .mp .header-green {
+    background-color: #78b82a; }
+  .mp .header-plaid-cymru {
+    background-color: #31751A; }
+  .mp .header-respect {
+    background-color: #366C15; }
+  .mp .header-snp {
+    background-color: #0E005E; }
+  .mp .header-sinn-fein {
+    background-color: #087E30; }
+  .mp .header-sdlp {
+    background-color: #0C5C40; }
+  .mp .header-speaker, .mp .header-independent {
+    background-color: #888888; }
   .mp table {
     max-width: 800px;
     margin: 20px auto; }
@@ -358,9 +372,12 @@ a.external:after {
 .no-footer footer {
   display: none; }
 
+.about .container {
+  margin-top: 80px; }
+
 footer {
   margin-top: 20px;
-  background-color: #1E222C; }
+  background-color: #222; }
   footer .sparkd {
     padding: 15px 0; }
 

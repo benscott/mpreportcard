@@ -45,18 +45,22 @@ App.module('MP', function (MP) {
                     return 'Has spoken ' + this.speeches + ' times in ' + this.debates + ' debates. On average, an MP spoke in ' + App.module('Data').averages['debates'] + ' debates.'
                 },
                 interests_description: function () {
-
                     var desc = 'Financial interests declared by ' + this.name + '. The MP average was &pound' + App.module('Data').averages['interests'].toLocaleString() + '.'
                     // Create link to google doc to view the interests
                     if (this.interests > 0){
-                        desc += ' <a class="external" target="_blank" href="https://spreadsheets.google.com/tq?tqx=out:html&tq=SELECT+A,+B,+C,+D,+F,+G,+H,+I,+J+WHERE+A=' + this.id + '&key=1j3IX-yGOZj1SUNMEs817v9egBPu5YJyVek26t3mGJqQ">View interests.</a>'
+                       desc += ' <a class="external" target="_blank" href="https://spreadsheets.google.com/tq?tqx=out:html&tq=SELECT+A,+B,+C,+D,+F,+G,+H,+I,+J,+K+WHERE+A=' + this.id + '+AND+I=FALSE&key=1j3IX-yGOZj1SUNMEs817v9egBPu5YJyVek26t3mGJqQ">View interests.</a>'
                     }
                     return desc
 
                 },
                 expenses_description: function () {
-                    return this.name + ' declared expenses totalling &pound' + this.expenses.toLocaleString() + ' in this parliament. The MP average was &pound' + App.module('Data').averages['expenses'].toLocaleString() + '.'
-                },
+                    var mp_name = this.list_name.replace(/ /g,"_").replace(',', '').toLowerCase()
+                    var desc = this.name + ' declared expenses totalling &pound' + this.expenses.toLocaleString() + ' in this parliament. The MP average was &pound' + App.module('Data').averages['expenses'].toLocaleString() + '.'
+                    if (this.expenses > 0){
+                        desc += ' <a class="external" target="_blank" href="http://datapipes.okfnlabs.org/csv/html/?url=https://raw.githubusercontent.com/sparkd/mp-expenses/master/data/' + mp_name +'.csv">View expenses.</a>'
+                    }
+                    return desc
+                 },
                 answers_description: function () {
                     if (this.govt){
                         return 'Government ministers do not submit written questions.'
@@ -65,7 +69,10 @@ App.module('MP', function (MP) {
                     }
                 },
                 votes_description: function () {
-                    return 'Attended ' + this.votes_attended + ' out of '  + this.votes_possible + ' votes.  The average attendance was ' + App.module('Data').averages['votes_percentage'] + '&percnt;.'
+                    var desc = 'Attended ' + this.votes_attended + ' out of '  + this.votes_possible + ' votes.  The average attendance was ' + App.module('Data').averages['votes_percentage'] + '&percnt;.'
+                    desc += ' <a class="external" target="_blank" href="http://www.publicwhip.org.uk/mp.php?id=uk.org.publicwhip/member/' + this.pw_id + '&showall=yes">View votes.</a>'
+                    return desc
+
                 },
                 replies_description: function () {
 
@@ -74,19 +81,27 @@ App.module('MP', function (MP) {
                     }else{
                         return  'Replied to ' + this.replies + ' out of '  + this.surveys + ' letters sent via WriteToThem in 2013. The average reply rate was ' + App.module('Data').averages['replies_percentage'] + '&percnt;.'
                     }
-
-                    console.log(this);
-
                 },
                 rebel_votes_description: function () {
-                    return  'Voted against their party in ' + this.rebel_votes + ' votes. The MP average was ' + App.module('Data').averages['rebel_votes'] + '.'
+                    var desc = 'Voted against their party in ' + this.rebel_votes + ' votes. The MP average was ' + App.module('Data').averages['rebel_votes'] + '.'
+                    if(this.rebel_votes){
+                        desc += '<br /><a class="external" target="_blank" href="http://www.publicwhip.org.uk/mp.php?id=uk.org.publicwhip/member/' + this.pw_id + '&role=rebel">View rebellions.</a>'
+                    }
+                    return desc
                 },
                 edms_description: function () {
+                    var desc
                     if (this.govt) {
-                       return 'Government ministers do not submit Early Day Motions.'
+                       desc = 'Government ministers do not submit Early Day Motions.'
                     }else{
-                        return  'Signed ' + this.edms + ' Early Day Motions. The MP average was ' + App.module('Data').averages['edms'] + '.'
+                       desc = 'Signed ' + this.edms + ' Early Day Motions. The MP average was ' + App.module('Data').averages['edms'] + '.'
+
+                       if(this.edms && this.edms_id){
+                        desc += '<br /><a class="external" target="_blank" href="http://www.edms.org.uk/mps/' + this.edms_id + '">View EDMS.</a>'
+                       }
+
                     }
+                    return desc;
                 }
             };
         },
@@ -102,6 +117,7 @@ App.module('MP', function (MP) {
             // Make mp page item active
             $('#navbar-collapse li').removeClass('active');
             $('#navbar-collapse li a[href="#mp"]').parent().addClass('active');
+            window.scrollTo(0,0);
         }
     });
 });

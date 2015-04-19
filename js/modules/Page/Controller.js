@@ -5,10 +5,18 @@ App.module('Page', function (Page) {
             App.body.close();
             this.view = null;
         },
-        // Show list of MPs
+        // Show home page
         showIndex: function () {
             this._ensureSubAppIsRunning();
             this.view = new Page.IndexView();
+            // Show in the body
+            App.body.show(this.view);
+
+        },
+        // Show home page
+        showAbout: function () {
+            this._ensureSubAppIsRunning();
+            this.view = new Page.AboutView();
             // Show in the body
             App.body.show(this.view);
 

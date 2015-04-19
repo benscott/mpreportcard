@@ -52,9 +52,9 @@
         <div class="row">
             <div class="sparkd"><a title="SPARKD: Open Data Innovation" href="http://sparkd.com">Built by <i class="fa fa-fire"></i> SPARKD</a></div>
 
-            </div>
-
         </div>
+
+    </div>
 
 </footer>
 
@@ -80,18 +80,26 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-3">
-                        <h2>&pound;182 million<small>Expenses</small></h2>
+                        <h2>&pound;182 million
+                            <small>Expenses</small>
+                        </h2>
                     </div>
                     <div class="col-sm-3 interests">
-                        <h2>&pound;42 million<small>Financial interests</small></h2>
+                        <h2>&pound;42 million
+                            <small>Financial interests</small>
+                        </h2>
                     </div>
 
                     <div class="col-sm-3 debates">
-                        <h2>181,&thinsp;642<small>Debates</small></h2>
+                        <h2>181,&thinsp;642
+                            <small>Debates</small>
+                        </h2>
                     </div>
 
                     <div class="col-sm-3">
-                        <h2>325,&thinsp;841<small>Speeches</small></h2>
+                        <h2>325,&thinsp;841
+                            <small>Speeches</small>
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -181,7 +189,7 @@
                     </th>
                     <td class="col-xs-2">
                         <% if (data_quality_indicator) { %>
-                            <h3><%= replies_percentage %>&percnt;</h3>
+                        <h3><%= replies_percentage %>&percnt;</h3>
                         <% } %>
                     </td>
                     <td class="col-xs-1">
@@ -271,6 +279,7 @@
                     <thead>
                     <tr>
                         <th class="col-xs-3 mp-name" data-sort="string">Name</th>
+                        <th class="col-xs-3" data-sort="string">Party</th>
                         <th class="col-xs-3" data-sort="string">Constituency</th>
                         <th class="col-xs-1" data-sort="float">Interests</th>
                         <th class="col-xs-1" data-sort="float">Expenses</th>
@@ -290,7 +299,8 @@
 </script>
 
 <script type="text/template" id="mplist-row">
-    <td class="lead <%= clsName %>" data-sort-value="<%= list_name %>"><i title="<%= party %>" class="fa fa-circle"></i><a href="#mp/<%= id %>"><%= list_name %></a></td>
+    <td class="lead <%= clsName %>" data-sort-value="<%= list_name %>"><a href="#mp/<%= id %>"><%= list_name %></a></td>
+    <td data-sort-value="<%= party %>"><%= party_short %></td>
     <td data-sort-value="<%= constituency %>"><%= constituency %></td>
     <td data-sort-value="<%= interests %>">&pound;<%= interests.toLocaleString() %></td>
     <td data-sort-value="<%= expenses %>">&pound;<%= expenses.toLocaleString() %></td>
@@ -306,7 +316,7 @@
     Sorry, no MPs found
 </script>
 
-<!-- Parties Page -->
+<!-- Stats Page -->
 <script type="text/template" id="stats">
 
     <div class="header">
@@ -373,6 +383,33 @@
 
 </script>
 
+<script type="text/template" id="about-page">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8">
+
+                <h1>Where is this information from?</h1>
+                <p>We have collected this from a variety of sources. </p>
+                liz_mcinnes quote?
+                http://www.publications.parliament.uk/pa/cm/cmregmem.htm
+                <h1>About MP Report Card</h1>
+                <h4>What is this site for?</h4>
+                <p>This site tries to </p>
+                <p></p>
+                <h4>Can I view the data?</h4>
+                <h4>What do the figures mean?</h4>
+                <h4>Where is the data from</h4>
+                <h4>How accurate are these figures?</h4>
+                <h4>Are these figures a good reflection of an MP's performance?</h4>
+                Explain distance
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+</script>
+
 
 <!-- Dependencies -->
 <!-- FIXME: Use MIN -->
@@ -408,6 +445,7 @@
 <script src="js/modules/MPList/index.js"></script>
 
 <script src="js/modules/Page/views/IndexView.js"></script>
+<script src="js/modules/Page/views/AboutView.js"></script>
 <script src="js/modules/Page/Controller.js"></script>
 <script src="js/modules/Page/Router.js"></script>
 <script src="js/modules/Page/index.js"></script>

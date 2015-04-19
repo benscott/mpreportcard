@@ -11,12 +11,15 @@ App.module('Search', function (Search) {
           },
         onRender: function(){
             this.$('input').autocomplete({
-                serviceUrl: "http://127.0.0.1:18080/solr/collection1/select",
-                dataType: "jsonp",
-                params: {
-                    wt: 'json',
-                    omitHeader: true
+                serviceUrl: function(q){
+                    // Redirect to postcode if string contains number
+                    if(q.match(/\d+/g) != null){
+                        return "http://127.0.0.1:8931/postcode.js"
+                    }else{
+                        return "http://127.0.0.1:8931/mp.js"
+                    }
                 },
+                dataType: "jsonp",
                 paramName: 'q',
                 ajaxSettings: {
                     jsonp: 'json.wrf'
@@ -26,16 +29,21 @@ App.module('Search', function (Search) {
                 showNoSuggestionNotice: true,
                 noSuggestionNotice: 'Sorry, we could find an MP matching your search.',
                 onSearchStart: function (query) {
-                    // Add wildcard to search
-                    query['q'] += '*'
+                    if(query.q.match(/\d+/g) != null){
+                        // Postcode only search
+                        query.q = 'postcode:' + query.q
+                    }else{
+                        // Handles spaces
+                        query.q = '(' + query.q.replace(' ', '') + ')'
+                    }
+
                 },
                 transformResult: function(response) {
 
                     // Format the data we've received from SOLR
                     return {
                         suggestions: $.map(response.response.docs, function(item) {
-                            // FIXME: Add constituency to search
-                            return { value: item.name, data: item.id };
+                            return { value: item.name + ' (' + item.constituency +')', data: item.id };
                         })
                     };
                 },

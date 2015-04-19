@@ -4,7 +4,12 @@ App.Router = Marionette.AppRouter.extend({
     },
     redirectNotFound: function () {
         Backbone.history.navigate('', { trigger: true, replace: true});
+    },
+    onRoute: function(){
+        console.log('toute');
     }
+
+
 });
 
 App.addInitializer(function () {
