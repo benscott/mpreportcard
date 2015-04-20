@@ -6,17 +6,17 @@ App.module('Search', function (Search) {
         </form>'),
         templateHelpers: function () {
             return {
-              placeholder: this.options.placeholder
+                placeholder: this.options.placeholder
             };
-          },
-        onRender: function(){
+        },
+        onRender: function () {
             this.$('input').autocomplete({
-                serviceUrl: function(q){
+                serviceUrl: function (q) {
                     // Redirect to postcode if string contains number
-                    if(q.match(/\d+/g) != null){
-                        return "http://127.0.0.1:8931/postcode.js"
-                    }else{
-                        return "http://127.0.0.1:8931/mp.js"
+                    if (q.length > 2 && q.match(/\d+/g) != null) {
+                        return "http://127.0.0.1:8931/postcode"
+                    } else {
+                        return "http://127.0.0.1:8931/mp"
                     }
                 },
                 dataType: "jsonp",
@@ -27,25 +27,36 @@ App.module('Search', function (Search) {
                 minChars: 2,
                 preserveInput: true,
                 showNoSuggestionNotice: true,
-                noSuggestionNotice: 'Sorry, we could find an MP matching your search.',
+                noSuggestionNotice: 'Sorry, no MPs found',
                 onSearchStart: function (query) {
-                    if(query.q.match(/\d+/g) != null){
+                    if (query.q.length > 2 && query.q.match(/\d+/g) != null) {
                         // Postcode only search
-                        query.q = 'postcode:' + query.q
-                    }else{
-                        // Handles spaces
-                        query.q = '(' + query.q.replace(' ', '') + ')'
+                        query.q = 'postcode:' + query.q.replace(' ', '')
+                    } else {
+                        // Wrap the default query in brackets to handle the spaces
+                        query.q = '(' + query.q + ')'
                     }
-
+                    return query
                 },
-                transformResult: function(response) {
-
+                transformResult: function (response) {
                     // Format the data we've received from SOLR
-                    return {
-                        suggestions: $.map(response.response.docs, function(item) {
-                            return { value: item.name + ' (' + item.constituency +')', data: item.id };
-                        })
-                    };
+
+                    // We get two responses - one for the MPs, another for postcodes
+                    // So map them differently if we get the grouped response
+                    // Or Just the normal one
+                    if (_.isUndefined(response.grouped)) {
+                        return {
+                            suggestions: $.map(response.response.docs, function (item) {
+                                return { "value": item.name + ' (' + item.constituency + ')', data: item.id};
+                            })
+                        };
+                    } else {
+                        return {
+                            suggestions: $.map(response.grouped.member_id.groups, function (item) {
+                                return { "value": item['doclist']['docs'][0]['_name'] + ' (' + item['doclist']['docs'][0]['_constituency'] + ')', "data": item['groupValue'] }
+                            })
+                        };
+                    }
                 },
                 onSelect: function (suggestion) {
                     this.value = ''

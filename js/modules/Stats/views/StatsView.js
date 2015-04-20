@@ -16,7 +16,7 @@ App.module('Stats', function (Stats) {
             'DUP': '#CA5438',
             'Alliance': '#EFCE00',
             'Plaid Cymru': '#31751A',
-            'SNP': '#FFF771',
+            'SNP': '#0E005E',
             'Sinn Fein': '#087E30',
             'Independent': '#888888',
             'Respect': '#366C15'

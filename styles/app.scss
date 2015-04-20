@@ -8,7 +8,6 @@ $light-grey-text: lighten($grey-text, 20);
 $light-grey: #F6F6F6;
 $black: #000;
 
-
 // Party colours
 $labour-color: #E00600;
 $cons-color: #0061C8;
@@ -61,8 +60,12 @@ a.external:after {
   border-bottom: 0;
   background: $dark-grey-bg;
 
-  a, a:focus, .active a {
-    color: $grey-text !important;
+  a, a:focus {
+    color: $grey-text;
+  }
+
+  .active a {
+    background: none !important;
   }
 
   .navbar-brand {
@@ -125,7 +128,7 @@ a.external:after {
 }
 
 .autocomplete-suggestion,
-.autocomplete-no-suggestion{
+.autocomplete-no-suggestion {
   padding: 3px 8px;
   background-color: rgba(0, 0, 0, 0.7);
   border-bottom: 1px solid rgba(0, 0, 0, 0.75);
@@ -163,18 +166,18 @@ a.external:after {
       position: relative;
       z-index: 100;
 
-        &:first-of-type {
-          height: 32%;
-        }
+      &:first-of-type {
+        height: 32%;
+      }
 
-      .container{
-        padding:0;
+      .container {
+        padding: 0;
       }
 
       .strapline {
         width: 100%;
-          position: absolute;
-          bottom: 0;
+        position: absolute;
+        bottom: 0;
       }
 
       h1, h2, h2 small {
@@ -252,388 +255,419 @@ a.external:after {
   }
 }
 
-  // MP List Page
+// MP List Page
 
-  .mp-list {
-    margin-top: 80px;
+.mp-list {
+  margin-top: 80px;
 
-    table {
-      th {
-        border-bottom: none !important;
+  table {
+    th {
+      border-bottom: none !important;
+      cursor: pointer;
+      &:before {
         cursor: pointer;
-        &:before {
-          cursor: pointer;
-          font-family: FontAwesome;
-          font-style: normal;
-          font-weight: normal;
-          text-decoration: inherit;
-          font-size: 16px;
-          margin-right: 6px;
-          position: relative;
-          content: "\f0dc";
-          color: $light-grey-text;
-          top: 1px;
-        }
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        font-size: 14px;
+        margin-right: 5px;
+        position: relative;
+        content: "\f0dc";
+        color: $light-grey-text;
+      }
 
-      }
-      th.sorting-asc:before,
-      th.sorting-desc:before {
-        color: $black;
-      }
-      th.sorting-asc:before {
-        content: "\f0dd";
-        top: -2px;
-      }
-      th.sorting-desc:before {
-        content: "\f0de";
-        top: 5px;
-      }
-      td {
-        border: none !important;
-        vertical-align: middle !important;
-      }
     }
+    th.sorting-asc:before,
+    th.sorting-desc:before {
+      color: $black;
+    }
+    th.sorting-asc:before {
+      content: "\f0dd";
+      top: -2px;
+    }
+    th.sorting-desc:before {
+      content: "\f0de";
+      top: 5px;
+    }
+    td {
+      padding: 6px !important;
+      border: none !important;
+      vertical-align: middle !important;
+      text-align: center;
+
+      &.text-left {
+        text-align: left;
+      }
+
+      a {
+        min-width: 130px;
+        display: block;
+      }
+
+    }
+
+  }
+}
+
+// MP Page
+
+.mp {
+  margin-top: 80px;
+
+  .header {
+    color: #fff;
+    background: #666;
+
+    .image {
+      float: left;
+      width: 60px;
+      height: 60px;
+      position: relative;
+      overflow: hidden;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      margin-top: 5px;
+      margin-right: 15px;
+      margin-bottom: 5px;
+
+      img {
+        object-fit: cover;
+        min-height: 100%;
+        min-width: 100%;
+      }
+
+    }
+
+    h1 {
+      margin: 15px 0 0 0;
+    }
+
+    h1.with-post {
+      margin: 5px 0 2px 0;
+    }
+
+    h6 {
+      margin: 0
+
+    }
+
+    h4 {
+      font-weight: normal;
+      line-height: 1.3em;
+
+      strong {
+        display: block;
+      }
+
+    }
+
   }
 
-  // MP Page
+  .header-labour {
+    background-color: $labour-color;
+  }
 
-  .mp {
-    margin-top: 80px;
+  .header-conservative {
+    background-color: $cons-color;
+  }
 
-    .header {
-      color: #fff;
-      background: #666;
+  .header-lib-dem {
+    background-color: $lib-color;
+  }
 
-      .image {
-        float: left;
+  .header-ukip {
+    background-color: $ukip-color;
+  }
+
+  .header-alliance {
+    background-color: $alliance-color;
+  }
+
+  .header-dup {
+    background-color: $dup-color;
+  }
+
+  .header-green {
+    background-color: $green-color;
+  }
+
+  .header-plaid-cymru {
+    background-color: $cymru-color;
+  }
+
+  .header-respect {
+    background-color: $respect-color;
+  }
+
+  .header-snp {
+    background-color: $snp-color;
+  }
+
+  .header-sinn-fein {
+    background-color: $sinn-fein-color;
+  }
+
+  .header-sdlp {
+    background-color: $sdlp-color;
+  }
+
+  .header-speaker, .header-independent {
+    background-color: $ind-color;
+  }
+
+  table {
+    max-width: 800px;
+    margin: 20px auto;
+
+    tr {
+      padding: 10px 0;
+
+      th, td {
+        padding: 10px 0;
+        vertical-align: middle;
+      }
+
+    }
+
+    th {
+
+      color: $dark-grey-text;
+
+      h2 {
+        margin: 0 0 5px 0;
+        font-size: 22px;
+      }
+
+      p {
+        font-weight: normal;
+        margin-right: 80px;
+        font-size: 13px;
+      }
+
+    }
+
+    td {
+
+      h3 {
+        font-size: 28px;
+        margin: 0;
+      }
+
+      .traffic-light {
+
         width: 60px;
         height: 60px;
-        position: relative;
+        border-radius: 150px;
+        -webkit-border-radius: 150px;
+        -moz-border-radius: 150px;
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 11px;
         overflow: hidden;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -o-border-radius: 50%;
-        border-radius: 50%;
-        border: 2px solid #fff;
-        margin-top: 5px;
-        margin-right: 15px;
-        margin-bottom: 5px;
 
-        img {
-          object-fit: cover;
-          min-height: 100%;
-          min-width: 100%;
-        }
-
-      }
-
-      h1 {
-        margin: 15px 0 0 0;
-      }
-
-      h1.with-post {
-        margin: 5px 0 2px 0;
-      }
-
-      h6 {
-        margin: 0
-
-      }
-
-      h4 {
-        font-weight: normal;
-        line-height: 1.3em;
-
-        strong {
+        span {
           display: block;
+          padding-top: 15px;
         }
 
       }
 
-    }
-
-    .header-labour {
-      background-color: $labour-color;
-    }
-
-    .header-conservative {
-      background-color: $cons-color;
-    }
-
-    .header-lib-dem {
-      background-color: $lib-color;
-    }
-
-    .header-ukip {
-      background-color: $ukip-color;
-    }
-
-    .header-alliance {
-      background-color: $alliance-color;
-    }
-
-    .header-dup {
-      background-color: $dup-color;
-    }
-
-    .header-green {
-      background-color: $green-color;
-    }
-
-    .header-plaid-cymru {
-      background-color: $cymru-color;
-    }
-
-    .header-respect {
-      background-color: $respect-color;
-    }
-
-    .header-snp {
-      background-color: $snp-color;
-    }
-
-    .header-sinn-fein {
-      background-color: $sinn-fein-color;
-    }
-
-    .header-sdlp {
-      background-color: $sdlp-color;
-    }
-
-    .header-speaker, .header-independent {
-      background-color: $ind-color;
-    }
-
-    table {
-      max-width: 800px;
-      margin: 20px auto;
-
-      tr {
-        padding: 10px 0;
-
-        th, td {
-          padding: 10px 0;
-          vertical-align: middle;
+      .average {
+        background: $traffic-light-amber;
+        span {
+          padding-top: 23px;
         }
 
       }
 
-      th {
-
-        color: $dark-grey-text;
-
-        h2 {
-          margin: 0 0 5px 0;
-          font-size: 22px;
-        }
-
-        p {
-          font-weight: normal;
-          margin-right: 80px;
-          font-size: 13px;
-        }
-
+      .above-average {
+        background: $traffic-light-green;
       }
 
-      td {
-
-        h3 {
-          font-size: 28px;
-          margin: 0;
-        }
-
-        .traffic-light {
-
-          width: 60px;
-          height: 60px;
-          border-radius: 150px;
-          -webkit-border-radius: 150px;
-          -moz-border-radius: 150px;
-          color: #fff;
-          text-align: center;
-          text-transform: uppercase;
-          font-size: 11px;
-          overflow: hidden;
-
-          span {
-            display: block;
-            padding-top: 15px;
-          }
-
-        }
-
-        .average {
-          background: $traffic-light-amber;
-          span {
-            padding-top: 23px;
-          }
-
-        }
-
-        .above-average {
-          background: $traffic-light-green;
-        }
-
-        .below-average {
-          background: $traffic-light-red;
-        }
-
-        .na {
-          background: $light-grey;
-        }
-
+      .below-average {
+        background: $traffic-light-red;
       }
 
-      tr.inverse {
-        // Inverted color - less is better
+      .na {
+        background: $light-grey;
+      }
 
-        .below-average {
-          background: $traffic-light-green;
-        }
+    }
 
-        .above-average {
-          background: $traffic-light-red;
-        }
+    tr.inverse {
+      // Inverted color - less is better
 
+      .below-average {
+        background: $traffic-light-green;
+      }
+
+      .above-average {
+        background: $traffic-light-red;
       }
 
     }
 
   }
 
-  .stats {
+}
 
-    .header {
-      margin-top: 80px;
-      background: $light-grey;
-      padding-bottom: 20px;
+.stats {
 
-      form {
+  .header {
+    margin-top: 80px;
+    background: $light-grey;
+    padding-bottom: 20px;
 
-        padding-top: 20px;
+    form {
 
-        select {
-          margin-top: 3px;
+      padding-top: 20px;
+
+      select {
+        margin-top: 3px;
+        font-size: 18px;
+      }
+
+      fieldset {
+        margin-top: 6px;
+
+        label {
           font-size: 18px;
         }
 
-        fieldset {
-          margin-top: 6px;
-
-          label {
-            font-size: 18px;
-          }
-
-        }
-
-        .disabled label {
-          color: $light-grey-text;
-        }
-
       }
+
+      .disabled label {
+        color: $light-grey-text;
+      }
+
     }
-
-    h2 {
-      margin: 20px 0 25px 0;
-      text-align: center;
-    }
-
-    .graph {
-
-      margin-top: 10px;
-      text-align: center;
-
-      rect {
-        stroke: white;
-      }
-
-      .x-axis line {
-        stroke: darken($light-grey, 5);
-      }
-
-      .x-axis path {
-        display: none;
-      }
-    }
-
   }
 
-  .d3-tip {
-    line-height: 1;
-    font-weight: bold;
-    padding: 12px;
-    background: rgba(0, 0, 0, 0.8);
+  h2 {
+    margin: 20px 0 25px 0;
+    text-align: center;
+  }
+
+  .graph {
+
+    margin-top: 10px;
+    text-align: center;
+
+    rect {
+      stroke: white;
+    }
+
+    .x-axis line {
+      stroke: darken($light-grey, 5);
+    }
+
+    .x-axis path {
+      display: none;
+    }
+  }
+
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Northward tooltips */
+.d3-tip.n:after {
+  content: "\25BC";
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+/* Eastward tooltips */
+.d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+
+/* Southward tooltips */
+.d3-tip.s:after {
+  content: "\25B2";
+  margin: 0 0 1px 0;
+  top: -8px;
+  left: 0;
+  text-align: center;
+}
+
+/* Westward tooltips */
+.d3-tip.w:after {
+  content: "\25B6";
+  margin: -4px 0 0 -1px;
+  top: 50%;
+  left: 100%;
+}
+
+.no-footer footer {
+  display: none;
+}
+
+// About page
+.about {
+  .container {
+    margin-top: 80px;
+  }
+}
+
+footer {
+  margin-top: 20px;
+  background-color: $dark-grey-bg;
+  color: $light-grey-text;
+  font-size: 12px;
+  padding-bottom: 20px;
+
+  a, a:visited {
     color: #fff;
-    border-radius: 2px;
-    pointer-events: none;
   }
 
-  /* Creates a small triangle extender for the tooltip */
-  .d3-tip:after {
-    box-sizing: border-box;
-    display: inline;
-    font-size: 10px;
-    width: 100%;
-    line-height: 1;
-    color: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    pointer-events: none;
+  a:hover, a:active{
+    color: $light-grey-text!important;
   }
 
-  /* Northward tooltips */
-  .d3-tip.n:after {
-    content: "\25BC";
-    margin: -1px 0 0 0;
-    top: 100%;
-    left: 0;
-    text-align: center;
+  .sparkd {
+    padding: 15px 0;
   }
 
-  /* Eastward tooltips */
-  .d3-tip.e:after {
-    content: "\25C0";
-    margin: -4px 0 0 0;
-    top: 50%;
-    left: -8px;
+  h6{
+    margin: 15px 0;
   }
 
-  /* Southward tooltips */
-  .d3-tip.s:after {
-    content: "\25B2";
-    margin: 0 0 1px 0;
-    top: -8px;
-    left: 0;
-    text-align: center;
+  ul li{
+    list-style: none;
   }
 
-  /* Westward tooltips */
-  .d3-tip.w:after {
-    content: "\25B6";
-    margin: -4px 0 0 -1px;
-    top: 50%;
-    left: 100%;
-  }
-
-  .no-footer footer {
-    display: none;
-  }
-
-  // About page
-  .about{
-    .container{
-      margin-top: 80px;
-    }
-  }
-
-  footer {
-    margin-top: 20px;
-    background-color: $dark-grey-bg;
-
-    .sparkd{
-      padding: 15px 0;
-    }
-
-  }
+}
 
 
