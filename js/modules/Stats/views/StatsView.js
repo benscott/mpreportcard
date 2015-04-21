@@ -292,7 +292,7 @@ App.module('Stats', function (Stats) {
             switch (type) {
                 case 'percent':
                     return function (d) {
-                        return d.value + '&percnt;'
+                        return d.value + '&#37;'
                     }
                 case 'currency_total':
                     return function (d) {

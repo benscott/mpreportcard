@@ -60,6 +60,8 @@ a.external:after {
     border-radius: 0;
     box-shadow: none;
     color: #fff; }
+  #search-form input::-ms-clear {
+    display: none; }
 
 .autocomplete-suggestions {
   color: #fff; }
@@ -120,6 +122,7 @@ a.external:after {
         display: block;
         font-size: 20px;
         margin-top: 10px;
+        line-height: 1.1em;
         color: #aaaaaa; }
     .home .full section #home-search {
       position: absolute;
@@ -134,7 +137,6 @@ a.external:after {
           border: 1px solid #fff;
           background: none;
           font-size: 1.8em;
-          line-height: 60px;
           height: 60px; }
         .home .full section #home-search form span.glyphicon-search {
           font-size: 30px; }
@@ -169,6 +171,12 @@ a.external:after {
       position: relative;
       content: "\f0dc";
       color: #d0d0d0; }
+    .mp-list table th.mp-votes, .mp-list table th.mp-edms {
+      min-width: 70px; }
+    .mp-list table th.mp-replies, .mp-list table th.mp-rebels {
+      min-width: 80px; }
+    .mp-list table th.mp-interests, .mp-list table th.mp-expenses, .mp-list table th.mp-debates, .mp-list table th.mp-answers {
+      min-width: 95px; }
   .mp-list table th.sorting-asc:before,
   .mp-list table th.sorting-desc:before {
     color: #000; }
@@ -388,7 +396,7 @@ footer {
   background-color: #222;
   color: #d0d0d0;
   font-size: 12px;
-  padding-bottom: 20px; }
+  padding: 5px 0 10px 0; }
   footer a, footer a:visited {
     color: #fff; }
   footer a:hover, footer a:active {
@@ -399,5 +407,9 @@ footer {
     margin: 15px 0; }
   footer ul li {
     list-style: none; }
+
+.autocomplete-error {
+  color: #fff;
+  position: absolute; }
 
 /*# sourceMappingURL=app.css.map */

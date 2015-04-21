@@ -121,6 +121,11 @@ a.external:after {
     box-shadow: none;
     color: #fff;
   }
+
+  input::-ms-clear {
+      display: none;
+  }
+
 }
 
 .autocomplete-suggestions {
@@ -197,6 +202,7 @@ a.external:after {
           display: block;
           font-size: 20px;
           margin-top: 10px;
+          line-height: 1.1em;
           color: lighten($grey-text, 5);
         }
 
@@ -218,7 +224,6 @@ a.external:after {
             border: 1px solid #fff;
             background: none;
             font-size: 1.8em;
-            line-height: 60px;
             height: 60px;
           }
 
@@ -276,6 +281,27 @@ a.external:after {
         content: "\f0dc";
         color: $light-grey-text;
       }
+
+      &.mp-votes,
+      &.mp-edms{
+        min-width: 70px;
+      }
+
+      &.mp-replies,
+      &.mp-rebels{
+        min-width: 80px;
+      }
+
+      &.mp-interests,
+      &.mp-expenses,
+      &.mp-debates,
+      &.mp-answers{
+        min-width: 95px;
+      }
+
+
+
+
 
     }
     th.sorting-asc:before,
@@ -646,7 +672,7 @@ footer {
   background-color: $dark-grey-bg;
   color: $light-grey-text;
   font-size: 12px;
-  padding-bottom: 20px;
+  padding: 5px 0 10px 0;
 
   a, a:visited {
     color: #fff;
@@ -670,4 +696,7 @@ footer {
 
 }
 
-
+.autocomplete-error{
+  color: #fff;
+  position: absolute;
+}

@@ -69,7 +69,7 @@ App.module('MP', function (MP) {
                     }
                 },
                 votes_description: function () {
-                    var desc = 'Attended ' + this.votes_attended + ' out of '  + this.votes_possible + ' votes.  The average attendance was ' + App.module('Data').averages['votes_percentage'] + '&percnt;.'
+                    var desc = 'Attended ' + this.votes_attended + ' out of '  + this.votes_possible + ' votes.  The average attendance was ' + App.module('Data').averages['votes_percentage'] + '&#37;.'
                     desc += ' <a class="external" target="_blank" href="http://www.publicwhip.org.uk/mp.php?id=uk.org.publicwhip/member/' + this.pw_id + '&showall=yes">View votes.</a>'
                     return desc
 
@@ -79,7 +79,7 @@ App.module('MP', function (MP) {
                     if(!this.data_quality_indicator){
                         return  'WriteToThem had no information on this MP.'
                     }else{
-                        return  'Replied to ' + this.replies + ' out of '  + this.surveys + ' letters sent via WriteToThem in 2013. The average reply rate was ' + App.module('Data').averages['replies_percentage'] + '&percnt;.'
+                        return  'Replied to ' + this.replies + ' out of '  + this.surveys + ' letters sent via WriteToThem in 2013. The average reply rate was ' + App.module('Data').averages['replies_percentage'] + '&#37;.'
                     }
                 },
                 rebel_votes_description: function () {

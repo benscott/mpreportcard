@@ -186,7 +186,7 @@
                         <p><%= votes_description() %></p>
                     </th>
                     <td class="col-xs-2">
-                        <h3><%= votes_percentage %>&percnt;</h3>
+                        <h3><%= votes_percentage %>&#37;</h3>
                     </td>
                     <td class="col-xs-1">
                         <%= getStatus('votes_percentage') %>
@@ -201,7 +201,7 @@
                     </th>
                     <td class="col-xs-2">
                         <% if (data_quality_indicator) { %>
-                        <h3><%= replies_percentage %>&percnt;</h3>
+                        <h3><%= replies_percentage %>&#37;</h3>
                         <% } %>
                     </td>
                     <td class="col-xs-1">
@@ -291,16 +291,16 @@
                     <thead>
                     <tr>
                         <th class="col-xs-3 mp-name" data-sort="string">Name</th>
-                        <th class="col-xs-3" data-sort="string">Party</th>
-                        <th class="col-xs-3" data-sort="string">Constituency</th>
-                        <th class="col-xs-1" data-sort="float">Interests</th>
-                        <th class="col-xs-1" data-sort="float">Expenses</th>
-                        <th class="col-xs-1" data-sort="int">Debates</th>
-                        <th class="col-xs-1" data-sort="int">Answers</th>
-                        <th class="col-xs-1" data-sort="float">Votes</th>
-                        <th class="col-xs-1" data-sort="float">Replies</th>
-                        <th class="col-xs-1" data-sort="float">Rebels</th>
-                        <th class="col-xs-1" data-sort="float">EDMS</th>
+                        <th class="col-xs-3 mp-party" data-sort="string">Party</th>
+                        <th class="col-xs-3 mp-constituency" data-sort="string">Constituency</th>
+                        <th class="col-xs-1 mp-interests" data-sort="float">Interests</th>
+                        <th class="col-xs-1 mp-expenses" data-sort="float">Expenses</th>
+                        <th class="col-xs-1 mp-debates" data-sort="int">Debates</th>
+                        <th class="col-xs-1 mp-answers" data-sort="int">Answers</th>
+                        <th class="col-xs-1 mp-votes" data-sort="float">Votes</th>
+                        <th class="col-xs-1 mp-replies" data-sort="float">Replies</th>
+                        <th class="col-xs-1 mp-rebels" data-sort="float">Rebels</th>
+                        <th class="col-xs-1 mp-edms" data-sort="float">EDMS</th>
                     </tr>
                     </thead>
                     <tbody data-item-view-container></tbody>
@@ -318,8 +318,8 @@
     <td data-sort-value="<%= expenses %>">&pound;<%= expenses.toLocaleString() %></td>
     <td><%= debates %></td>
     <td><%= answers %></td>
-    <td data-sort-value="<%= votes_percentage %>"><%= votes_percentage %>&percnt;</td>
-    <td data-sort-value="<%= replies_percentage %>"><%= replies_percentage %>&percnt;</td>
+    <td data-sort-value="<%= votes_percentage %>"><%= votes_percentage %>&#37;</td>
+    <td data-sort-value="<%= replies_percentage %>"><%= replies_percentage %>&#37;</td>
     <td><%= rebel_votes %></td>
     <td><%= edms %></td>
 </script>
