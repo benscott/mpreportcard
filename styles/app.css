@@ -412,4 +412,28 @@ footer {
   color: #fff;
   position: absolute; }
 
+.about-page-wrapper {
+  max-width: 70%;
+  margin: 0 auto; }
+  .about-page-wrapper .jumbotron {
+    background: #F6F6F6;
+    padding: 30px 40px;
+    margin-top: 20px; }
+  .about-page-wrapper h2 {
+    margin-top: 50px;
+    margin-bottom: 10px; }
+  .about-page-wrapper h3 {
+    text-transform: none;
+    margin-top: 30px;
+    margin-bottom: 6px; }
+  .about-page-wrapper blockquote {
+    font-size: 14px;
+    color: #6a6a6a; }
+    .about-page-wrapper blockquote footer {
+      background: transparent;
+      color: #000; }
+      .about-page-wrapper blockquote footer a {
+        color: #000;
+        text-decoration: underline; }
+
 /*# sourceMappingURL=app.css.map */
